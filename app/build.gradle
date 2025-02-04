@@ -260,6 +260,7 @@ dependencies {
     androidTestImplementation libs.espresso.contrib
     androidTestImplementation libs.androidx.junit
     androidTestImplementation libs.room.testing
+    androidTestImplementation libs.androidx.espresso.intents
     androidTestUtil libs.androidx.orchestrator
 
     // Compose Library
