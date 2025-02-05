@@ -44,12 +44,12 @@ val languagesList = listOf(
 
 val firstLineText = listOf(
     AppTextView::class.java,
-    "primaryTextView",
+    "primaryTextView"
 )
 
 val secondLineText = listOf(
     AppTextView::class.java,
-    "secondaryTextView",
+    "secondaryTextView"
 )
 
 val mainImage = listOf(
@@ -66,10 +66,10 @@ val mainImagePageTwo = listOf(
 
 val firstLineTextPageTwo = listOf(
     AppTextView::class.java,
-    "primaryTextView",
+    "primaryTextView"
 )
 
 val secondLineTextPageTwo = listOf(
     AppTextView::class.java,
-    "secondaryTextView",
+    "secondaryTextView"
 )
