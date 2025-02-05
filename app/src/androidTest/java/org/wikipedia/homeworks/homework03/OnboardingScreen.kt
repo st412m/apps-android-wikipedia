@@ -45,37 +45,31 @@ val languagesList = listOf(
 val firstLineText = listOf(
     AppTextView::class.java,
     "primaryTextView",
-    "Lorem ipsum"
 )
 
 val secondLineText = listOf(
     AppTextView::class.java,
     "secondaryTextView",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 )
 
 val mainImage = listOf(
     AppCompatImageView::class.java,
-    "imageViewCentered",
-    "illustration_onboarding_explore"
+    "imageViewCentered"
 )
 
 // after pressing continue
 
 val mainImagePageTwo = listOf(
     AppCompatImageView::class.java,
-    "imageViewCentered",
-    "illustration_onboarding_explore"
+    "imageViewCentered"
 )
 
 val firstLineTextPageTwo = listOf(
     AppTextView::class.java,
     "primaryTextView",
-    "Lorem ipsum"
 )
 
 val secondLineTextPageTwo = listOf(
     AppTextView::class.java,
     "secondaryTextView",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 )
