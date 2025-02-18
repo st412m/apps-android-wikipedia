@@ -93,26 +93,26 @@ class GeneralMatcher(){
     operator fun invoke(function: GeneralMatcher.() -> Unit){
         function()
     }
-    fun CheckLengthInRange(min: Float, max: Float){
+    fun checkLengthInRange(min: Float, max: Float){
         allOfMatchers.add(LengthInRange(min, max))
     }
-    fun CheckTheNumberOfAngles(){
+    fun checkTheNumberOfAngles(){
         allOfMatchers.add(TheNumberOfAngles())
     }
-    fun CheckEvenNumberOfSides(){
+    fun checkEvenNumberOfSides(){
         allOfMatchers.add(EvenNumberOfSides())
     }
-    fun CheckShapeColor(expectedColor: Color){
+    fun checkShapeColor(expectedColor: Color){
         allOfMatchers.add(ShapeColor(expectedColor))
     }
-    fun CheckNegativeLengthOfSides(){
+    fun checkNegativeLengthOfSides(){
         allOfMatchers.add(NegativeLengthOfSides())
     }
-    fun CheckNegativeNumberOfSides(){
+    fun checkNegativeNumberOfSides(){
         allOfMatchers.add(NegativeNumberOfSides())
     }
-    fun CollectAllMatchersAllOf() = allOf(allOfMatchers)
-    fun CollectAllMatchersAnyOf() = anyOf(allOfMatchers)
+    fun collectAllMatchersAllOf() = allOf(allOfMatchers)
+    fun collectAllMatchersAnyOf() = anyOf(allOfMatchers)
 
 }
 
@@ -130,20 +130,20 @@ fun main(){
     val generalMatcher = GeneralMatcher()
 
     generalMatcher {
-        CheckLengthInRange(0f, 30f)
-        CheckTheNumberOfAngles()
-        CheckNegativeLengthOfSides()
-        CheckNegativeNumberOfSides()
-        CheckShapeColor(Color.YELLOW)
-        CheckEvenNumberOfSides()
+        checkLengthInRange(0f, 30f)
+        checkTheNumberOfAngles()
+        checkNegativeLengthOfSides()
+        checkNegativeNumberOfSides()
+        checkShapeColor(Color.YELLOW)
+        checkEvenNumberOfSides()
     }
 
-    val result = shapes.filter { generalMatcher.CollectAllMatchersAllOf().matches(it) }
+    val result = shapes.filter { generalMatcher.collectAllMatchersAllOf().matches(it) }
     println(result)
-    val result1 = shapes.filter { generalMatcher.CollectAllMatchersAnyOf().matches(it) }
+    val result1 = shapes.filter { generalMatcher.collectAllMatchersAnyOf().matches(it) }
     println(result1)
 
-    val matcher = generalMatcher.CollectAllMatchersAllOf()
+    val matcher = generalMatcher.collectAllMatchersAllOf()
 
     shapes.forEachIndexed { index, shape ->
         val result = matcher.matches(shape)
@@ -155,16 +155,16 @@ fun main(){
         try {
             val generalMatcher = GeneralMatcher()
             generalMatcher {
-                CheckLengthInRange(0f, 30f)
-                CheckTheNumberOfAngles()
-                CheckNegativeLengthOfSides()
-                CheckNegativeNumberOfSides()
-                CheckShapeColor(Color.YELLOW)
-                CheckEvenNumberOfSides()
+                checkLengthInRange(0f, 30f)
+                checkTheNumberOfAngles()
+                checkNegativeLengthOfSides()
+                checkNegativeNumberOfSides()
+                checkShapeColor(Color.YELLOW)
+                checkEvenNumberOfSides()
             }
 
             assertThat("При проверке фигуры ${index + 1}\n обнаружены несоответствия", shape, generalMatcher
-                .CollectAllMatchersAllOf())
+                .collectAllMatchersAllOf())
             println("Фигура ${index + 1} прошла все проверки")
 
         } catch (e: AssertionError) {
