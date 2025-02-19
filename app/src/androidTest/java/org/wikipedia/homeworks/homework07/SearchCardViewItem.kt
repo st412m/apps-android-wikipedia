@@ -8,14 +8,14 @@ import org.hamcrest.Matcher
 import org.wikipedia.R
 
 class SearchCardViewItem(matcher: Matcher<View>) : KRecyclerItem<SearchCardViewItem>(matcher) {
-    val searchIcon = KImageView(matcher){
+    val searchIcon = KImageView(matcher) {
         withDrawable(R.drawable.ic_search_white_24dp)
     }
-    val searchText = KTextView(matcher){
+    val searchText = KTextView(matcher) {
         withText(R.string.search_hint)
     }
 
-    val voiceIcon = KImageView(matcher){
+    val voiceIcon = KImageView(matcher) {
         withId(R.id.voice_search_button)
     }
 }
