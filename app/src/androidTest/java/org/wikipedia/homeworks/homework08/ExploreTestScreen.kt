@@ -85,7 +85,7 @@ class ExploreTestScreen : TestCase() {
     }
 
     @Test
-    fun bottomButtonSkip() {
+    fun bottomButtonSkipTest() {
         run {
             step("Проверяем отображение кнопки 'Skip'") {
                 OnboardingScreen.skipButton.isDisplayed()
@@ -98,7 +98,7 @@ class ExploreTestScreen : TestCase() {
     }
 
     @Test
-    fun pageIndicator() {
+    fun pageIndicatorTest() {
         run {
             step("Наличие индикатора страниц") {
                 OnboardingScreen.pageIndicator.isDisplayed()
@@ -107,7 +107,7 @@ class ExploreTestScreen : TestCase() {
     }
 
     @Test
-    fun bottomButtonContinue() {
+    fun bottomButtonContinueTest() {
         run {
             step("Проверяем отображение кнопки 'Skip'") {
                 OnboardingScreen.forwardButton.isDisplayed()
@@ -120,7 +120,7 @@ class ExploreTestScreen : TestCase() {
     }
 
     @Test
-    fun bottomButtonGetStarted() {
+    fun bottomButtonGetStartedTest() {
         run {
             step("Убеждаемся, что ее нет на начальном экране") {
                 OnboardingScreen.doneButton.isGone()
@@ -138,6 +138,17 @@ class ExploreTestScreen : TestCase() {
 
             step("Проверяем кликабельность кнопки 'Get Started'") {
                 OnboardingScreen.doneButton.isClickable()
+            }
+        }
+    }
+
+    @Test
+    fun addLanguageTest() {
+        run {
+            step("Нажимаем на кнопку 'Add or edit languge'") {
+                OnboardingScreen.slider.childAt<OnboardingPagerItem>(0) {
+                    addLanguageButton.click()
+                }
             }
         }
     }
