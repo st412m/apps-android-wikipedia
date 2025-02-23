@@ -17,15 +17,17 @@ class ExploreTestScreen : TestCase() {
     @Test
     fun logoTest() {
         run {
+            var page = 0
             repeat(numOfPage) {
                 step("Проверяем отображение логотипа") {
-                    OnboardingScreen.slider.childAt<OnboardingPagerItem>(0) {
+                    OnboardingScreen.slider.childAt<OnboardingPagerItem>(page) {
                         wikiLogo.isDisplayed()
                     }
                 }
                 step("Переходим на следующую страницу") {
                     OnboardingScreen.forwardButton.click()
                 }
+                page++
             }
         }
     }
@@ -33,15 +35,17 @@ class ExploreTestScreen : TestCase() {
     @Test
     fun primaryTitleTest() {
         run {
+            var page = 0
             repeat(numOfPage) {
                 step("Проверяем отображение заглавного текстового поля") {
-                    OnboardingScreen.slider.childAt<OnboardingPagerItem>(0) {
+                    OnboardingScreen.slider.childAt<OnboardingPagerItem>(page) {
                         textTitle.isDisplayed()
                     }
                 }
                 step("Переходим на следующую страницу") {
                     OnboardingScreen.forwardButton.click()
                 }
+                page++
             }
         }
     }
@@ -49,15 +53,17 @@ class ExploreTestScreen : TestCase() {
     @Test
     fun secondaryTitleTest() {
         run {
+            var page = 0
             repeat(numOfPage) {
                 step("Проверяем отображение второго тестового поля") {
-                    OnboardingScreen.slider.childAt<OnboardingPagerItem>(0) {
-                        foundLanguageText.isDisplayed()
+                    OnboardingScreen.slider.childAt<OnboardingPagerItem>(page) {
+                        secondTextTitle.isDisplayed()
                     }
                 }
-            }
-            step("Переходим на следующую страницу") {
-                OnboardingScreen.forwardButton.click()
+                step("Переходим на следующую страницу") {
+                    OnboardingScreen.forwardButton.click()
+                }
+                page++
             }
         }
     }

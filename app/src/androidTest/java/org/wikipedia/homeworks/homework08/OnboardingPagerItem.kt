@@ -21,7 +21,7 @@ class OnboardingPagerItem(
         withId(R.id.primaryTextView)
     }
 
-    val foundLanguageText = KTextView(matcher){
+    val secondTextTitle = KTextView(matcher){
         withId(R.id.secondaryTextView)
     }
 
