@@ -9,7 +9,7 @@ import io.github.kakaocup.kakao.recycler.KRecyclerView
 import org.hamcrest.Matcher
 import org.wikipedia.R
 
-object OnboardingScreen: KScreen<OnboardingScreen>() {
+object OnboardingScreenExample: KScreen<OnboardingScreenExample>() {
     override val layoutId = R.layout.fragment_onboarding_pager
     override val viewClass = null
 
@@ -23,7 +23,6 @@ object OnboardingScreen: KScreen<OnboardingScreen>() {
         },
         itemTypeBuilder = {
             itemType(::OnboardingPagerFirstItem)
-            itemType(::OnboardingPagerSecondItem)
         }
     )
 
