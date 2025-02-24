@@ -184,16 +184,12 @@ class ExploreTestScreen : TestCase() {
                 WikipediaLanguagesScreen.toolbar.click()
             }
             step("Проверяем, что язык отобразился на главном экране") {
-                OnboardingScreen.slider.childAt<OnboardingPagerItem>(0) {
-                    languages.childAt<OptionLanguageItem>(0){
-                        languageName.isDisplayed()
-                    }
-
-                }
+                LanguageRecyclerOnboardItem.languages.isDisplayed()
             }
         }
     }
 }
+
 
 
 
