@@ -4,6 +4,7 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule
 import com.kaspersky.kaspresso.testcases.api.testcase.TestCase
 import org.junit.Rule
 import org.junit.Test
+import org.wikipedia.homeworks.homework03.languagesList
 import org.wikipedia.main.MainActivity
 
 class ExploreTestScreen : TestCase() {
@@ -184,7 +185,10 @@ class ExploreTestScreen : TestCase() {
             }
             step("Проверяем, что язык отобразился на главном экране") {
                 OnboardingScreen.slider.childAt<OnboardingPagerItem>(0) {
-                    languages.isDisplayed()
+                    languages.childAt<OptionLanguageItem>(0){
+                        languageName.isDisplayed()
+                    }
+
                 }
             }
         }
