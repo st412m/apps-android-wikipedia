@@ -10,5 +10,4 @@ class WikiLanguageItem(matcher: Matcher<View>) : KRecyclerItem<WikiLanguageItem>
     val addLanguageButton = KTextView(matcher) {
         withId(R.id.wiki_language_title)
     }
-
 }

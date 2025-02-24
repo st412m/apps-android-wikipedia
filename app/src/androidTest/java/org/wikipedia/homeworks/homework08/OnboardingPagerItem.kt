@@ -25,16 +25,18 @@ class OnboardingPagerItem(
         withId(R.id.secondaryTextView)
     }
 
+    val addLanguageButton = KButton(matcher){
+        withId(R.id.addLanguageButton)
+    }
+
     val languages = KRecyclerView(
         parent = matcher,
         builder = {
-            withId(R.id.languageList)
+            withId(R.id.languagesList)
         },
         itemTypeBuilder = {
             itemType(::OptionLanguageItem)
         }
     )
-    val addLanguageButton = KButton(matcher){
-        withId(R.id.addLanguageButton)
-    }
+
 }

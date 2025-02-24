@@ -150,6 +150,46 @@ class ExploreTestScreen : TestCase() {
                     addLanguageButton.click()
                 }
             }
+            step("Проверяем, что открылся экран выбора языков") {
+                WikipediaLanguagesScreen.toolbar.isDisplayed()
+            }
+
+            step("Проверяем наличие списка языков") {
+                WikipediaLanguagesScreen.languageList.isDisplayed()
+            }
+
+            step("Проверяем наличие кнопки 'Add language'") {
+                WikipediaLanguagesScreen.addLanguageButton.isDisplayed()
+            }
+            step("Кликаем кнопку 'Add language'") {
+                WikipediaLanguagesScreen.addLanguageButton.click()
+            }
+            step("Проверяем, что открылся список языков") {
+                AddLanguageScreen {
+                    languageList.childAt<ListLanguageItem>(3) {
+                        localizedLanguageName.isDisplayed()
+                        languageSubtitle.isDisplayed()
+                    }
+                }
+            }
+            step("Кликаем по языку") {
+                AddLanguageScreen {
+                    languageList.childAt<ListLanguageItem>(3) {
+                        localizedLanguageName.click()
+                    }
+                }
+            }
+            step("Кликаем верхний тулбар, чтобы вернуться на главный экран") {
+                WikipediaLanguagesScreen.toolbar.click()
+            }
+            step("Проверяем, что язык отобразился на главном экране") {
+                OnboardingScreen.slider.childAt<OnboardingPagerItem>(0) {
+                    languages.isDisplayed()
+                }
+            }
         }
     }
 }
+
+
+
