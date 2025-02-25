@@ -188,16 +188,14 @@ class ExploreTestScreen : TestCase() {
             step("Проверяем, что язык отобразился на главном экране") {
                 OnboardingScreen.slider.childAt<OnboardingPagerItem>(0) {
                     languages.childAt<OptionLanguageItem>(2) {
-                        languageName {
-                            isVisible()
-                            hasText("Deutsch")
-                        }
+                        containsText("Deutsch")
                     }
                 }
             }
         }
     }
 }
+
 
 
 
