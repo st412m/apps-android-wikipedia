@@ -1,5 +1,7 @@
 package org.wikipedia.homeworks.homework08
 
+import androidx.test.espresso.Espresso
+import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import com.kaspersky.kaspresso.testcases.api.testcase.TestCase
 import org.junit.Rule
@@ -180,15 +182,23 @@ class ExploreTestScreen : TestCase() {
                     }
                 }
             }
-            step("Кликаем верхний тулбар, чтобы вернуться на главный экран") {
-                WikipediaLanguagesScreen.toolbar.click()
+            step("Возвращаемся на главный экран") {
+                Espresso.pressBack()
             }
             step("Проверяем, что язык отобразился на главном экране") {
-                LanguageRecyclerOnboardItem.languages.isDisplayed()
+                OnboardingScreen.slider.childAt<OnboardingPagerItem>(0) {
+                    languages.childAt<OptionLanguageItem>(2) {
+                        languageName {
+                            isVisible()
+                            hasText("Deutsch")
+                        }
+                    }
+                }
             }
         }
     }
 }
+
 
 
 

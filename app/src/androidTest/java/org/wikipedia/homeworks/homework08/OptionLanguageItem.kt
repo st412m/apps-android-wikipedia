@@ -8,5 +8,7 @@ import org.hamcrest.Matcher
 import org.wikipedia.R
 
 class OptionLanguageItem(parent: Matcher<View>) : KRecyclerItem<OptionLanguageItem>(parent) {
-    val languageName = KView(parent) { withId(R.id.option_label) }
+    val languageName = KTextView{
+        withId(R.id.option_label)
+    }
 }
