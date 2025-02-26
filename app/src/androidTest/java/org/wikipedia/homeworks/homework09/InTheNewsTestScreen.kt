@@ -47,7 +47,7 @@ class InTheNewsTestScreen : TestCase() {
                     newsCardItemTitle.click()
                 }
             }
-            step("Проверяем, что отображается элемент с ID page_web_view"){
+            step("Проверяем, что отображается элемент с ID page_web_view") {
                 NewsPage.newsPageWebView.isDisplayed()
             }
         }
