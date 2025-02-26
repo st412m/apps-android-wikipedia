@@ -38,5 +38,4 @@ class OnboardingPagerItem(
             itemType(::OptionLanguageItem)
         }
     )
-
 }
