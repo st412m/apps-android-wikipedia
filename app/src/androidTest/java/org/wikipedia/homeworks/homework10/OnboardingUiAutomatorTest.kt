@@ -4,7 +4,6 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule
 import com.kaspersky.kaspresso.testcases.api.testcase.TestCase
 import org.junit.Rule
 import org.junit.Test
-import org.wikipedia.homeworks.homework03.pageIndicator
 import org.wikipedia.main.MainActivity
 
 class OnboardingUiAutomatorTest : TestCase() {
