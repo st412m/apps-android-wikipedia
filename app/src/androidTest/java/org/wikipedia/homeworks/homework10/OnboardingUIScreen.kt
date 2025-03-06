@@ -1,6 +1,5 @@
 package org.wikipedia.homeworks.homework10
 
-import androidx.compose.ui.test.hasParent
 import com.kaspersky.components.kautomator.component.common.views.UiView
 import com.kaspersky.components.kautomator.component.scroll.UiScrollView
 import com.kaspersky.components.kautomator.component.text.UiButton
@@ -9,6 +8,8 @@ import com.kaspersky.components.kautomator.screen.UiScreen
 
 object OnboardingUIScreen : UiScreen<OnboardingUIScreen>() {
     override val packageName = "org.wikipedia.alpha"
+
+    const val SELECTED_LANGUAGE = "Deutsch"
 
     val viewPager = UiScrollView {
         withId(this@OnboardingUIScreen.packageName, "scrollViewContainer")
@@ -28,6 +29,10 @@ object OnboardingUIScreen : UiScreen<OnboardingUIScreen>() {
 
     val languageBlock = UiView {
         withId(this@OnboardingUIScreen.packageName, "languageListContainer")
+    }
+
+    val languageList = UiScrollView {
+        withId(this@OnboardingUIScreen.packageName, "languagesList")
     }
 
     val languageChoice = UiTextView {
@@ -56,5 +61,10 @@ object OnboardingUIScreen : UiScreen<OnboardingUIScreen>() {
 
     val getStartedButton = UiButton {
         withId(this@OnboardingUIScreen.packageName, "fragment_onboarding_done_button")
+    }
+
+    fun languageItemWithText(text: String) = UiTextView {
+        withId(this@OnboardingUIScreen.packageName, "option_label")
+        containsText(text)
     }
 }
