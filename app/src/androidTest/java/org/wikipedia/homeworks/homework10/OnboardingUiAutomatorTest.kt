@@ -1,6 +1,5 @@
 package org.wikipedia.homeworks.homework10
 
-import android.os.SystemClock
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import com.kaspersky.kaspresso.testcases.api.testcase.TestCase
 import org.junit.Rule
