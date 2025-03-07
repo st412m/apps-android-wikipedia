@@ -15,7 +15,10 @@ class OnboardingUiAutomatorTest : TestCase() {
         ActivityScenarioRule(MainActivity::class.java)
 
     private val numSwipes = 3
-    private val selectedLanguage = "Polski"
+    private val selectedLanguage = "Luganda"
+    /*
+    Языки для тестов: Español Аԥсшәа Luganda  Deutsch
+     */
 
     @Test
     fun checkMainBlock() {
@@ -98,8 +101,7 @@ class OnboardingUiAutomatorTest : TestCase() {
                 WikipediaLanguages.addLanguageText.click()
             }
             step(
-                "Выбираем язык 'Deutsch' - определяется в переменной selectedLanguage в " +
-                        "OnboardingUIScreen"
+                "Выбираем язык - определяется в переменной selectedLanguage в "
             ) {
                 AddLanguageScreen.languageContainer.scrollToStart()
                 val langName =
