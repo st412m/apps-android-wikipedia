@@ -9,8 +9,6 @@ import com.kaspersky.components.kautomator.screen.UiScreen
 object OnboardingUIScreen : UiScreen<OnboardingUIScreen>() {
     override val packageName = "org.wikipedia.alpha"
 
-    const val SELECTED_LANGUAGE = "Deutsch"
-
     val viewPager = UiScrollView {
         withId(this@OnboardingUIScreen.packageName, "scrollViewContainer")
     }

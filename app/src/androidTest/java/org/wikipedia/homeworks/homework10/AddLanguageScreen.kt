@@ -23,14 +23,14 @@ object AddLanguageScreen : UiScreen<AddLanguageScreen>() {
 
     val languageName = UiTextView {
         withId(this@AddLanguageScreen.packageName, "localized_language_name")
-        withText(OnboardingUIScreen.SELECTED_LANGUAGE)
     }
+
     val languageNameSubtitle = UiTextView {
         withId(this@AddLanguageScreen.packageName, "language_subtitle")
     }
 
     fun languageNameWithText(text: String) = UiTextView {
         withId(this@AddLanguageScreen.packageName, "localized_language_name")
-        containsText(text)
+        withText(text)
     }
 }

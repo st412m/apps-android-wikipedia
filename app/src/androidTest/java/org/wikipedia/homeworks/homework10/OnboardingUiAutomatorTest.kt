@@ -14,6 +14,7 @@ class OnboardingUiAutomatorTest : TestCase() {
         ActivityScenarioRule(MainActivity::class.java)
 
     private val numSwipes = 3
+    private val selectedLanguage = "Français"
 
     @Test
     fun checkMainBlock() {
@@ -101,19 +102,19 @@ class OnboardingUiAutomatorTest : TestCase() {
             ) {
                 AddLanguageScreen.languageContainer.scrollToStart()
                 val langName =
-                    AddLanguageScreen.languageNameWithText(OnboardingUIScreen.SELECTED_LANGUAGE)
-                AddLanguageScreen.languageContainer.scrollToView(langName)
-                langName.click()
+                    AddLanguageScreen.languageNameWithText(selectedLanguage)
+                    AddLanguageScreen.languageContainer.scrollToView(langName)
+                    langName.click()
             }
             step("Возвращаемся на главную страницу") {
                 WikipediaLanguages.navigateUpButton.click()
             }
             step("Проверяем наличие соответствующего языка на главной странице") {
                 val langItem =
-                    OnboardingUIScreen.languageItemWithText(OnboardingUIScreen.SELECTED_LANGUAGE)
+                    OnboardingUIScreen.languageItemWithText(selectedLanguage)
                 OnboardingUIScreen.languageList.scrollToView(langItem)
                 langItem.isDisplayed()
-                langItem.containsText(OnboardingUIScreen.SELECTED_LANGUAGE)
+                langItem.containsText(selectedLanguage)
             }
         }
     }
