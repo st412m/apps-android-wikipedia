@@ -14,9 +14,9 @@ class OnboardingUiAutomatorTest : TestCase() {
         ActivityScenarioRule(MainActivity::class.java)
 
     private val numSwipes = 3
-    private val selectedLanguage = "Luganda"
+    private val selectedLanguage = "Deutsch"
     /*
-    Языки для тестов: Español Аԥсшәа Luganda  Deutsch
+    Языки для тестов: Español Аԥсшәа Монгол  Deutsch
      */
 
     @Test

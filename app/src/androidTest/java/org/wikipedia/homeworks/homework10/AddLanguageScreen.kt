@@ -9,7 +9,7 @@ object AddLanguageScreen : UiScreen<AddLanguageScreen>() {
     override val packageName = "org.wikipedia.alpha"
 
     val languageContainer = UiScrollView {
-        withId(this@AddLanguageScreen.packageName, "decor_content_parent")
+        withId(this@AddLanguageScreen.packageName, "languages_list_recycler")
     }
     val navigateUpButton = UiButton {
         withContentDescription("Navigate up")
