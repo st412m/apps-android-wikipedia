@@ -18,7 +18,7 @@ class OnboardingUiAutomatorTest : TestCase() {
 
     @Test
     fun checkMainBlock() {
-        repeat(numSwipes) { index ->
+        repeat(numSwipes) {
             run {
                 step("Проверяем наличие изображения") {
                     OnboardingUIScreen.image.isDisplayed()
