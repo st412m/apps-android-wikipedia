@@ -1,5 +1,6 @@
 package org.wikipedia.homeworks.homework10
 
+import android.os.SystemClock
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import com.kaspersky.kaspresso.testcases.api.testcase.TestCase
 import org.junit.Rule
@@ -14,7 +15,7 @@ class OnboardingUiAutomatorTest : TestCase() {
         ActivityScenarioRule(MainActivity::class.java)
 
     private val numSwipes = 3
-    private val selectedLanguage = "Français"
+    private val selectedLanguage = "Polski"
 
     @Test
     fun checkMainBlock() {
@@ -103,13 +104,18 @@ class OnboardingUiAutomatorTest : TestCase() {
                 AddLanguageScreen.languageContainer.scrollToStart()
                 val langName =
                     AddLanguageScreen.languageNameWithText(selectedLanguage)
+
+                flakySafely(timeoutMs = 5000) {
+                    langName.isDisplayed()
                     AddLanguageScreen.languageContainer.scrollToView(langName)
-                    langName.click()
+                }
+                langName.click()
             }
             step("Возвращаемся на главную страницу") {
                 WikipediaLanguages.navigateUpButton.click()
             }
             step("Проверяем наличие соответствующего языка на главной странице") {
+                OnboardingUIScreen.languageList.scrollToEnd()
                 val langItem =
                     OnboardingUIScreen.languageItemWithText(selectedLanguage)
                 OnboardingUIScreen.languageList.scrollToView(langItem)
