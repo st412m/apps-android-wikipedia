@@ -123,9 +123,11 @@ class DeviceTestInTheNews : TestCase() {
             //"/app/src/androidTest/java/org/wikipedia/homeworks/homework11/"
             step("Делаем скриншот и сохраняем его в папку с домашкой") {
                 val screenshotPathOnDevice = File("/storage/emulated/0/DCIM/Screenshots/screenshot")
-                val targetPath = File("D:\\apps-android-wikipedia\\app\\src\\androidTest\\java\\org\\wikipedia\\homeworks\\homework11\\screenshot.png")
+                val targetPath = File("d:\\apps-android-wikipedia\\app\\src\\androidTest\\java\\org\\wikipedia\\homeworks\\homework11\\screenshot.png")
                 device.screenshots.take(screenshotPathOnDevice.toString())
-                device.files.pull(screenshotPathOnDevice.toString(), targetPath.toString())
+                val command = "pull"
+                val arguments = listOf("${screenshotPathOnDevice}.png", targetPath.toString())
+                adbServer.performAdb(command, arguments)
             }
         }
     }
