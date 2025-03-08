@@ -14,6 +14,9 @@ import org.wikipedia.homeworks.homework09.FragmentNews
 import org.wikipedia.homeworks.homework09.NewsCardItems
 import org.wikipedia.homeworks.homework09.NewsPage
 import org.wikipedia.main.MainActivity
+import java.io.File
+import java.nio.file.Files
+import java.nio.file.Paths
 import java.util.Locale
 
 class DeviceTestInTheNews : TestCase() {
@@ -33,13 +36,13 @@ class DeviceTestInTheNews : TestCase() {
             device.exploit.setOrientation(Exploit.DeviceOrientation.Portrait)
             device.language.switchInApp(Locale.ENGLISH)
         }.run {
-            step("Поворачиваем экран и проверяем ориентацию"){
+            step("Поворачиваем экран и проверяем ориентацию") {
                 device.exploit.setOrientation(Exploit.DeviceOrientation.Landscape)
-                if (!device.uiDevice.isNaturalOrientation){
+                if (!device.uiDevice.isNaturalOrientation) {
                     device.exploit.setOrientation(Exploit.DeviceOrientation.Portrait)
                 }
             }
-            step ("Выключаем экран и проверяем наличие кнопки 'Skip'"){
+            step("Выключаем экран и проверяем наличие кнопки 'Skip'") {
                 device.uiDevice.sleep()
                 Thread.sleep(5000)
                 device.uiDevice.wakeUp()
@@ -48,8 +51,10 @@ class DeviceTestInTheNews : TestCase() {
             step("Покидаем onboarding") {
                 OnboardingScreen.skipButton.click()
             }
-            step("Сворачиваем приложение, потом разворачивааем и проверяем есть ли у нас " +
-                    "блок 'In the news'") {
+            step(
+                "Сворачиваем приложение, потом разворачивааем и проверяем есть ли у нас " +
+                        "блок 'In the news'"
+            ) {
                 device.uiDevice.pressHome()
                 device.uiDevice.pressRecentApps()
                 device.uiDevice.waitForIdle()
@@ -81,7 +86,7 @@ class DeviceTestInTheNews : TestCase() {
                 FragmentNews.newsStoryItemsRecycler.childAt<NewsCardItems>(1) {
                     newsCardItemTitle.click()
                 }
-                if(retryButton.exists()) {
+                if (retryButton.exists()) {
                     device.network.toggleWiFi(true)
                     device.uiDevice.waitForIdle()
                     Thread.sleep(5000)
@@ -91,7 +96,10 @@ class DeviceTestInTheNews : TestCase() {
             step("Проверяем, что отображается элемент с ID page_web_view") {
                 NewsPage.newsPageWebView.isDisplayed()
             }
-            step("переключаем язык приложения, возвращаемся назад  и проверяем, что язык на кнопки Customize соответсвет ") {
+            step(
+                "переключаем язык приложения, возвращаемся назад  и проверяем, что язык " +
+                        "на кнопки Customize соответсвет "
+            ) {
                 device.uiDevice.pressBack()
                 device.uiDevice.pressBack()
 
@@ -102,15 +110,24 @@ class DeviceTestInTheNews : TestCase() {
                 //Entdecken
                 device.uiDevice.waitForIdle()
                 device.language.switchInApp(Locale.GERMAN)
-                val navLabel = device.uiDevice.findObject(UiSelector().resourceId("org.wikipedia.alpha:id/navigation_bar_item_large_label_view"))
+                val navLabel = device.uiDevice.findObject(
+                    UiSelector().resourceId(
+                        "org.wikipedia.alpha:id/navigation_bar_item_large_label_view"
+                    )
+                )
                 navLabel.text == "Entdecken"
             }
-            step("Проверяем, что сейчас активна MainActivity"){
+            step("Проверяем, что сейчас активна MainActivity") {
                 device.activities.isCurrent(MainActivity::class.java)
             }
-            step("Делаем скриншот и сохраняем его в папку с домашкой"){
-                device.uiDevice.takeScreenshot()
+            //"/app/src/androidTest/java/org/wikipedia/homeworks/homework11/"
+            step("Делаем скриншот и сохраняем его в папку с домашкой") {
+                val screenshotPathOnDevice = File("/storage/emulated/0/DCIM/Screenshots/screenshot")
+                val targetPath = File("D:\\apps-android-wikipedia\\app\\src\\androidTest\\java\\org\\wikipedia\\homeworks\\homework11\\screenshot.png")
+                device.screenshots.take(screenshotPathOnDevice.toString())
+                device.files.pull(screenshotPathOnDevice.toString(), targetPath.toString())
             }
         }
     }
 }
+
