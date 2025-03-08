@@ -6,11 +6,9 @@ import com.kaspersky.kaspresso.device.exploit.Exploit
 import com.kaspersky.kaspresso.testcases.api.testcase.TestCase
 import org.junit.Rule
 import org.junit.Test
-import org.wikipedia.homeworks.homework07.AnnouncementCardViewItem
 import org.wikipedia.homeworks.homework07.ExploreScreen
 import org.wikipedia.homeworks.homework07.InTheNewsCardItem
 import org.wikipedia.homeworks.homework07.NewsCardItem
-import org.wikipedia.homeworks.homework08.OnboardingPagerItem
 import org.wikipedia.homeworks.homework08.OnboardingScreen
 import org.wikipedia.homeworks.homework09.FragmentNews
 import org.wikipedia.homeworks.homework09.NewsCardItems
