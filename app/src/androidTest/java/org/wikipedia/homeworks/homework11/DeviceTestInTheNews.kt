@@ -15,8 +15,6 @@ import org.wikipedia.homeworks.homework09.NewsCardItems
 import org.wikipedia.homeworks.homework09.NewsPage
 import org.wikipedia.main.MainActivity
 import java.io.File
-import java.nio.file.Files
-import java.nio.file.Paths
 import java.util.Locale
 
 class DeviceTestInTheNews : TestCase() {
@@ -120,10 +118,12 @@ class DeviceTestInTheNews : TestCase() {
             step("Проверяем, что сейчас активна MainActivity") {
                 device.activities.isCurrent(MainActivity::class.java)
             }
-            //"/app/src/androidTest/java/org/wikipedia/homeworks/homework11/"
+
             step("Делаем скриншот и сохраняем его в папку с домашкой") {
                 val screenshotPathOnDevice = File("/storage/emulated/0/DCIM/Screenshots/screenshot")
-                val targetPath = File("d:\\apps-android-wikipedia\\app\\src\\androidTest\\java\\org\\wikipedia\\homeworks\\homework11\\screenshot.png")
+                val targetPath =
+                    File("d:\\apps-android-wikipedia\\app\\src\\androidTest\\java\\org\\" +
+                            "wikipedia\\homeworks\\homework11\\screenshot.png")
                 device.screenshots.take(screenshotPathOnDevice.toString())
                 val command = "pull"
                 val arguments = listOf("${screenshotPathOnDevice}.png", targetPath.toString())
