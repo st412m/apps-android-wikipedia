@@ -106,7 +106,10 @@ class DeviceTestInTheNews : TestCase() {
                 navLabel.text == "Entdecken"
             }
             step("Проверяем, что сейчас активна MainActivity"){
-
+                device.activities.isCurrent(MainActivity::class.java)
+            }
+            step("Делаем скриншот и сохраняем его в папку с домашкой"){
+                device.uiDevice.takeScreenshot()
             }
         }
     }
