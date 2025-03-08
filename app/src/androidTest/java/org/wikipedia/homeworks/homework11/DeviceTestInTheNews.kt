@@ -99,9 +99,13 @@ class DeviceTestInTheNews : TestCase() {
                     ExploreScreen.items.swipeDown()
                     Thread.sleep(500)
                 }
+                //Entdecken
                 device.uiDevice.waitForIdle()
                 device.language.switchInApp(Locale.GERMAN)
-
+                val navLabel = device.uiDevice.findObject(UiSelector().resourceId("org.wikipedia.alpha:id/navigation_bar_item_large_label_view"))
+                navLabel.text == "Entdecken"
+            }
+            step("Проверяем, что сейчас активна MainActivity"){
 
             }
         }
