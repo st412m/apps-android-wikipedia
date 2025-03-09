@@ -4,6 +4,7 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.uiautomator.UiSelector
 import com.kaspersky.kaspresso.device.exploit.Exploit
 import com.kaspersky.kaspresso.testcases.api.testcase.TestCase
+import org.junit.Assert
 import org.junit.Rule
 import org.junit.Test
 import org.wikipedia.homeworks.homework07.ExploreScreen
@@ -26,11 +27,9 @@ class DeviceTestInTheNews : TestCase() {
 
     fun inTheNewsDeviceTest() {
         before {
-            device.network.enable()
-            device.exploit.setOrientation(Exploit.DeviceOrientation.Portrait)
-            device.language.switchInApp(Locale.ENGLISH)
+
         }.after {
-            device.network.enable()
+            device.network.toggleWiFi(true)
             device.exploit.setOrientation(Exploit.DeviceOrientation.Portrait)
             device.language.switchInApp(Locale.ENGLISH)
         }.run {
@@ -113,7 +112,7 @@ class DeviceTestInTheNews : TestCase() {
                         "org.wikipedia.alpha:id/navigation_bar_item_large_label_view"
                     )
                 )
-                navLabel.text == "Entdecken"
+                Assert.assertEquals("Entdecken", navLabel.text)
             }
             step("Проверяем, что сейчас активна MainActivity") {
                 device.activities.isCurrent(MainActivity::class.java)
