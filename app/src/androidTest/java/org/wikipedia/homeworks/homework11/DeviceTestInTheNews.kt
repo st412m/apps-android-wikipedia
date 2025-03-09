@@ -97,8 +97,9 @@ class DeviceTestInTheNews : TestCase() {
                 "переключаем язык приложения, возвращаемся назад  и проверяем, что язык " +
                         "на кнопки Customize соответсвет "
             ) {
-                device.uiDevice.pressBack()
-                device.uiDevice.pressBack()
+                repeat(2) {
+                    device.uiDevice.pressBack()
+                }
 
                 repeat(4) {
                     ExploreScreen.items.swipeDown()
