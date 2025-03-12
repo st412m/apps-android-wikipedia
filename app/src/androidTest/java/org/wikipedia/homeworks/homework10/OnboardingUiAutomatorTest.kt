@@ -1,12 +1,18 @@
 package org.wikipedia.homeworks.homework10
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule
+import com.kaspersky.kaspresso.kaspresso.Kaspresso
+import com.kaspersky.kaspresso.params.AutoScrollParams
 import com.kaspersky.kaspresso.testcases.api.testcase.TestCase
 import org.junit.Rule
 import org.junit.Test
 import org.wikipedia.main.MainActivity
 
-class OnboardingUiAutomatorTest : TestCase() {
+class OnboardingUiAutomatorTest : TestCase(
+    kaspressoBuilder = Kaspresso.Builder.simple {
+        autoScrollParams = AutoScrollParams(allowedExceptions = emptySet())
+    }
+) {
 
     @get:Rule
 
@@ -14,7 +20,7 @@ class OnboardingUiAutomatorTest : TestCase() {
         ActivityScenarioRule(MainActivity::class.java)
 
     private val numSwipes = 3
-    private val selectedLanguage = "Deutsch"
+    private val selectedLanguage = "Монгол"
     /*
     Языки для тестов: Español Аԥсшәа Монгол  Deutsch
      */
@@ -107,8 +113,8 @@ class OnboardingUiAutomatorTest : TestCase() {
                     AddLanguageScreen.languageNameWithText(selectedLanguage)
 
                 flakySafely(timeoutMs = 5000) {
-                    langName.isDisplayed()
                     AddLanguageScreen.languageContainer.scrollToView(langName)
+                    langName.isDisplayed()
                 }
                 langName.click()
             }
