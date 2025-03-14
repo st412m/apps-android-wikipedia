@@ -6,7 +6,6 @@ import com.kaspersky.kaspresso.testcases.api.testcase.TestCase
 import org.junit.Rule
 import org.junit.Test
 import org.wikipedia.homeworks.homework07.ExploreScreen
-import org.wikipedia.homeworks.homework07.NewsCardItem
 import org.wikipedia.homeworks.homework07.SearchCardViewItem
 import org.wikipedia.homeworks.homework08.OnboardingScreen
 import org.wikipedia.main.MainActivity
