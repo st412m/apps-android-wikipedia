@@ -8,7 +8,7 @@ import org.wikipedia.R
 
 class PopUpWindowItems(matcher: Matcher<View>) : KViewPagerItem<PopUpWindowItems>(matcher) {
 
-    val referenceId = KTextView {
+    val referenceId = KTextView (matcher) {
         withId(R.id.reference_id)
     }
 }

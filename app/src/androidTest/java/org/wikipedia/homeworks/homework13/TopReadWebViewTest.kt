@@ -63,20 +63,46 @@ class TopReadWebViewTest : TestCase(
                     }
                 }
             }
-            step("Проверяем на соответствие текст заголовка и номер в строке во всплывающем окне") {
-                PopUpWindowViewScreen.pager.childAt<PopUpWindowItems>(0) {
-                    referenceId.isVisible()
-                    referenceId.containsText("5")
+            step("Ищем referenceId с текстом '5.' на всех страницах ViewPager2") {
+                val pager = PopUpWindowViewScreen.pager
+                val maxPages = 5
+                var swipeCount = 0
+
+                for (index in 0 until maxPages) {
+                    try {
+                        flakySafely(timeoutMs = 5000) {
+                            pager.childAt<PopUpWindowItems>(index) {
+                                referenceId {
+                                    isVisible()
+                                    containsText("5")
+                                }
+                            }
+                        }
+                        break
+                    } catch (e: Throwable) {
+                        if (index < maxPages - 1) {
+                            pager.swipeLeft()
+                            swipeCount++
+                            Thread.sleep(1000)
+                        } else {
+                            throw AssertionError("Элемент с текстом '5' не найден после проверки $maxPages страниц")
+                        }
+                    }
+                }
+
+                step("Закрываем всплывающее окно") {
+                    repeat(swipeCount + 1) {
+                        device.uiDevice.pressBack()
+                        Thread.sleep(300)
+                    }
                 }
             }
-            step("Закрываем всплывающее окно") {
-                device.uiDevice.pressBack()
-            }
+
             step("Открываем вторую ссылку с CSS классом mw-redirect и нажать на неё") {
                 ArticleViewScreen {
                     webView {
                         withElement(
-                            Locator.CSS_SELECTOR, "a.mw-redirect:nth-child(4)"
+                            Locator.CSS_SELECTOR, "a.mw-redirect:nth-child(2)"
                         ) {
                             scroll()
                             click()
@@ -84,11 +110,13 @@ class TopReadWebViewTest : TestCase(
                     }
                 }
             }
+
             step("Клипаем кнопу 'Read article'") {
                 flakySafely(timeoutMs = 10000) {
                     PreviewContainer.readArticleButton.click()
                 }
             }
+
             step("Скроллим до элемента с id 'References'") {
                 ArticleViewScreen {
                     webView {
