@@ -277,7 +277,8 @@ dependencies {
     // Compose Test Library
     androidTestImplementation(libs.compose.test)
     androidTestImplementation(composeBom)
-    androidTestImplementation 'com.kaspersky.android-components:kaspresso:1.5.4'
+    androidTestImplementation 'com.kaspersky.android-components:kaspresso:1.6.0'
+    androidTestImplementation "com.kaspersky.android-components:kaspresso-allure-support:1.6.0"
 }
 
 private setSigningConfigKey(config, Properties props) {
@@ -300,3 +301,59 @@ private static Properties loadProperties(File file) {
     }
     return props
 }
+
+// В файле build.gradle (уровня модуля или проекта)
+tasks.register("pullAllureResults") {
+    group = "verification"
+    description = "Pulls allure-results from device to app/build"
+    doLast {
+        def targetDir = file("build/allure-results")
+        if (targetDir.exists()) {
+            println "Deleting old allure-results in: ${targetDir.absolutePath}"
+            delete targetDir
+        }
+        exec {
+            commandLine "adb", "pull", "/storage/self/primary/Documents/allure-results", "build"
+        }
+    }
+}
+
+// Автоматическое выполнение после тасок, содержащих "connected"
+gradle.taskGraph.afterTask { Task task, TaskState state ->
+    if (task.name.toLowerCase().startsWith("connected") && task.name.toLowerCase().endsWith("androidtest")) {
+        if (state.failure == null) {
+            def allureTask = tasks.named("pullAllureResults").get()
+            println "Connected task finished: ${task.name}, running pullAllureResults..."
+            allureTask.actions.each { action ->
+                action.execute(allureTask)
+            }
+        } else {
+            println "Connected task ${task.name} failed. Skipping pullAllureResults."
+        }
+    }
+}
+
+tasks.register("clearDeviceAllureResults") {
+    group = "verification"
+    description = "Clears allure-results directory on Android device"
+
+    doLast {
+        def adbCommand = ["adb", "shell", "rm", "-rf", "/storage/self/primary/Documents/allure-results"]
+        println "Running: ${adbCommand.join(' ')}"
+        exec {
+            commandLine adbCommand
+        }
+    }
+}
+
+// Гарантированно срабатывает перед connected-тасками
+gradle.taskGraph.beforeTask { Task task ->
+    if (task.name.toLowerCase().startsWith("connected") && task.name.toLowerCase().endsWith("androidtest")) {
+        def clearTask = tasks.named("clearDeviceAllureResults").get()
+        println "Connected task starting: ${task.name}, running clearDeviceAllureResults first..."
+        clearTask.actions.each { action ->
+            action.execute(clearTask)
+        }
+    }
+}
+
