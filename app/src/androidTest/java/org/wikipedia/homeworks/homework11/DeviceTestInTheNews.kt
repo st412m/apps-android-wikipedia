@@ -2,7 +2,9 @@ package org.wikipedia.homeworks.homework11
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.uiautomator.UiSelector
+import com.kaspersky.components.alluresupport.withForcedAllureSupport
 import com.kaspersky.kaspresso.device.exploit.Exploit
+import com.kaspersky.kaspresso.kaspresso.Kaspresso
 import com.kaspersky.kaspresso.testcases.api.testcase.TestCase
 import org.junit.Assert
 import org.junit.Rule
@@ -18,7 +20,7 @@ import org.wikipedia.main.MainActivity
 import java.io.File
 import java.util.Locale
 
-class DeviceTestInTheNews : TestCase() {
+class DeviceTestInTheNews : TestCase(Kaspresso.Builder.withForcedAllureSupport()) {
 
     @get: Rule
     val activityScenarioRule = ActivityScenarioRule(MainActivity::class.java)

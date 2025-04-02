@@ -2,6 +2,7 @@ package org.wikipedia.homeworks.homework13
 
 import androidx.test.espresso.web.webdriver.Locator
 import androidx.test.ext.junit.rules.ActivityScenarioRule
+import com.kaspersky.components.alluresupport.withForcedAllureSupport
 import com.kaspersky.kaspresso.kaspresso.Kaspresso
 import com.kaspersky.kaspresso.params.AutoScrollParams
 import com.kaspersky.kaspresso.testcases.api.testcase.TestCase
@@ -14,7 +15,7 @@ import org.wikipedia.homeworks.homework08.OnboardingScreen
 import org.wikipedia.main.MainActivity
 
 class TopReadWebViewTest : TestCase(
-    kaspressoBuilder = Kaspresso.Builder.simple {
+    kaspressoBuilder = Kaspresso.Builder.withForcedAllureSupport().apply {
         autoScrollParams = AutoScrollParams(allowedExceptions = emptySet())
     }
 ) {
