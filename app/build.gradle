@@ -318,7 +318,7 @@ tasks.register("pullAllureResults") {
     }
 }
 
-// Автоматическое выполнение после тасок, содержащих "connected"
+// Автоматическое выполнение после тасок, содержащих "connected"/
 gradle.taskGraph.afterTask { Task task, TaskState state ->
     if (task.name.toLowerCase().startsWith("connected") && task.name.toLowerCase().endsWith("androidtest")) {
         def allureTask = tasks.named("pullAllureResults").get()
