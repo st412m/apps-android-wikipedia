@@ -321,14 +321,10 @@ tasks.register("pullAllureResults") {
 // Автоматическое выполнение после тасок, содержащих "connected"
 gradle.taskGraph.afterTask { Task task, TaskState state ->
     if (task.name.toLowerCase().startsWith("connected") && task.name.toLowerCase().endsWith("androidtest")) {
-        if (state.failure == null) {
-            def allureTask = tasks.named("pullAllureResults").get()
-            println "Connected task finished: ${task.name}, running pullAllureResults..."
-            allureTask.actions.each { action ->
-                action.execute(allureTask)
-            }
-        } else {
-            println "Connected task ${task.name} failed. Skipping pullAllureResults."
+        def allureTask = tasks.named("pullAllureResults").get()
+        println "Connected task finished: ${task.name}, running pullAllureResults..."
+        allureTask.actions.each { action ->
+            action.execute(allureTask)
         }
     }
 }
@@ -356,4 +352,3 @@ gradle.taskGraph.beforeTask { Task task ->
         }
     }
 }
-
