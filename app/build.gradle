@@ -340,9 +340,5 @@ tasks.withType(com.android.build.gradle.internal.tasks.AndroidTestTask).configur
     }
 }
 
-tasks.whenTaskAdded { Task task ->
-    if (task instanceof com.android.build.gradle.internal.tasks.AndroidTestTask) {
-    }
-}
 
 

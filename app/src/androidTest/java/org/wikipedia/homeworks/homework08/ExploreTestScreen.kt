@@ -25,7 +25,7 @@ class ExploreTestScreen : TestCase(Kaspresso.Builder.withForcedAllureSupport()) 
             var page = 0
             repeat(numOfPage) {
                 step("Проверяем отображение логотипа") {
-                    OnboardingScreen.slider.childAt<OnboardingPagerItem>(1) {
+                    OnboardingScreen.slider.childAt<OnboardingPagerItem>(page) {
                         wikiLogo.isDisplayed()
                     }
                 }
@@ -43,7 +43,7 @@ class ExploreTestScreen : TestCase(Kaspresso.Builder.withForcedAllureSupport()) 
             var page = 0
             repeat(numOfPage) {
                 step("Проверяем отображение заглавного текстового поля") {
-                    OnboardingScreen.slider.childAt<OnboardingPagerItem>(1) {
+                    OnboardingScreen.slider.childAt<OnboardingPagerItem>(page) {
                         textTitle.isDisplayed()
                     }
                 }
@@ -61,7 +61,7 @@ class ExploreTestScreen : TestCase(Kaspresso.Builder.withForcedAllureSupport()) 
             var page = 0
             repeat(numOfPage) {
                 step("Проверяем отображение второго тестового поля") {
-                    OnboardingScreen.slider.childAt<OnboardingPagerItem>(1) {
+                    OnboardingScreen.slider.childAt<OnboardingPagerItem>(page) {
                         secondTextTitle.isDisplayed()
                     }
                 }
@@ -73,22 +73,22 @@ class ExploreTestScreen : TestCase(Kaspresso.Builder.withForcedAllureSupport()) 
         }
     }
 
-//    @Test
-//    fun addLanguageButtonTest() {
-//        run {
-//            step("Проверяем отображение кнопки 'Добавить или изменить язык'") {
-//                OnboardingScreen.slider.childAt<OnboardingPagerItem>(0) {
-//                    addLanguageButton.isDisplayed()
-//                }
-//            }
-//            step("Проверяем кликабельность кнопки 'Добавить или изменить язык'") {
-//                OnboardingScreen.slider.childAt<OnboardingPagerItem>(0) {
-//                    addLanguageButton.isClickable()
-//                }
-//            }
-//        }
-//    }
-//
+    @Test
+    fun addLanguageButtonTest() {
+        run {
+            step("Проверяем отображение кнопки 'Добавить или изменить язык'") {
+                OnboardingScreen.slider.childAt<OnboardingPagerItem>(0) {
+                    addLanguageButton.isDisplayed()
+                }
+            }
+            step("Проверяем кликабельность кнопки 'Добавить или изменить язык'") {
+                OnboardingScreen.slider.childAt<OnboardingPagerItem>(0) {
+                    addLanguageButton.isClickable()
+                }
+            }
+        }
+    }
+
 //    @Test
 //    fun bottomButtonSkipTest() {
 //        run {
@@ -146,7 +146,7 @@ class ExploreTestScreen : TestCase(Kaspresso.Builder.withForcedAllureSupport()) 
 //            }
 //        }
 //    }
-
+//
 //    @Test
 //    fun addLanguageTest() {
 //        run {
