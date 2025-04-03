@@ -303,60 +303,82 @@ private static Properties loadProperties(File file) {
 }
 
 // В файле build.gradle (уровня модуля или проекта)
-tasks.register("pullAllureResults") {
+
+// Задача для удаления локальной директории
+tasks.register("deleteLocalAllureResults", Delete) {
     group = "verification"
-    description = "Pulls allure-results from device to app/build"
-    doLast {
-        def targetDir = file("build/allure-results")
+    description = "Deletes local allure-results directory"
+
+    def targetDir = file("build/allure-results")
+    delete targetDir
+
+    doFirst {
+        println "Running deleteLocalAllureResults..."
         if (targetDir.exists()) {
             println "Deleting old allure-results in: ${targetDir.absolutePath}"
-            delete targetDir
-        }
-        exec {
-            commandLine "adb", "pull", "/sdcard/Documents/allure-results", "build"
+        } else {
+            println "No local allure-results directory to delete"
         }
     }
 }
 
-// Автоматическое выполнение после тасок, содержащих "connected"
-gradle.taskGraph.afterTask { Task task, TaskState state ->
-    if (task.name.toLowerCase().startsWith("connected") && task.name.toLowerCase().endsWith("androidtest")) {
-        def allureTask = tasks.named("pullAllureResults").get()
-        println "Connected task finished: ${task.name}, running pullAllureResults..."
-        allureTask.actions.each { action ->
-            action.execute(allureTask)
-        }
+// Задача для выполнения adb pull
+tasks.register("pullAllureResults", Exec) {
+    group = "verification"
+    description = "Pulls allure-results from device to app/build"
+
+    dependsOn tasks.named("deleteLocalAllureResults")
+
+    def adbCommand = ["adb", "pull", "/sdcard/Documents/allure-results", "build"]
+    commandLine adbCommand
+
+    ignoreExitValue true
+
+    doFirst {
+        println "Running pullAllureResults..."
+        println "Command: ${adbCommand.join(' ')}"
+    }
+    doLast {
+        println "Pull completed with exit code: ${executionResult.get().exitValue}"
     }
 }
 
-tasks.register("clearDeviceAllureResults") {
+// Задача для очистки на устройстве
+tasks.register("clearDeviceAllureResults", Exec) {
     group = "verification"
     description = "Clears allure-results directory on Android device"
 
+    def adbCommand = ["adb", "shell", "rm", "-rf", "/sdcard/Documents/allure-results"]
+    commandLine adbCommand
+
+    ignoreExitValue true
+
+    doFirst {
+        println "Running clearDeviceAllureResults..."
+        println "Command: ${adbCommand.join(' ')}"
+    }
     doLast {
-        def adbCommand = ["adb", "shell", "rm", "-rf", "/sdcard/Documents/allure-results"]
-        println "Running: ${adbCommand.join(' ')}"
-        exec {
-            commandLine adbCommand
-        }
+        println "Clear completed with exit code: ${executionResult.get().exitValue}"
     }
 }
 
-// Гарантированно срабатывает перед connected-тасками
-gradle.taskGraph.beforeTask { Task task ->
+// Привязка к инструментальным тестам Android
+tasks.withType(com.android.build.gradle.internal.tasks.AndroidTestTask).configureEach { Task task ->
+    println "Configuring Android test task: ${task.name}"
     if (task.name.toLowerCase().startsWith("connected") && task.name.toLowerCase().endsWith("androidtest")) {
-        def clearTask = tasks.named("clearDeviceAllureResults").get()
-        println "Connected task starting: ${task.name}, running clearDeviceAllureResults first..."
-        clearTask.actions.each { action ->
-            action.execute(clearTask)
-        }
+        println "Matched connected Android test task: ${task.name}"
+        task.dependsOn tasks.named("clearDeviceAllureResults")
+        task.finalizedBy tasks.named("pullAllureResults")
+        println "Dependencies set for ${task.name}: dependsOn clearDeviceAllureResults, finalizedBy pullAllureResults"
+    } else {
+        println "Task ${task.name} does not match 'connected' and 'androidtest' pattern"
     }
 }
 
-
-
-
-
-
-
+// Дополнительная диагностика всех AndroidTestTask задач
+tasks.whenTaskAdded { Task task ->
+    if (task instanceof com.android.build.gradle.internal.tasks.AndroidTestTask) {
+        println "Found AndroidTest task: ${task.name}"
+    }
+}
 
