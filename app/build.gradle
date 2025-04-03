@@ -303,26 +303,14 @@ private static Properties loadProperties(File file) {
 }
 
 // В файле build.gradle (уровня модуля или проекта)
-
-// Задача для удаления локальной директории
 tasks.register("deleteLocalAllureResults", Delete) {
     group = "verification"
     description = "Deletes local allure-results directory"
 
     def targetDir = file("build/allure-results")
     delete targetDir
-
-    doFirst {
-        println "Running deleteLocalAllureResults..."
-        if (targetDir.exists()) {
-            println "Deleting old allure-results in: ${targetDir.absolutePath}"
-        } else {
-            println "No local allure-results directory to delete"
-        }
-    }
 }
 
-// Задача для выполнения adb pull
 tasks.register("pullAllureResults", Exec) {
     group = "verification"
     description = "Pulls allure-results from device to app/build"
@@ -333,17 +321,8 @@ tasks.register("pullAllureResults", Exec) {
     commandLine adbCommand
 
     ignoreExitValue true
-
-    doFirst {
-        println "Running pullAllureResults..."
-        println "Command: ${adbCommand.join(' ')}"
-    }
-    doLast {
-        println "Pull completed with exit code: ${executionResult.get().exitValue}"
-    }
 }
 
-// Задача для очистки на устройстве
 tasks.register("clearDeviceAllureResults", Exec) {
     group = "verification"
     description = "Clears allure-results directory on Android device"
@@ -352,33 +331,18 @@ tasks.register("clearDeviceAllureResults", Exec) {
     commandLine adbCommand
 
     ignoreExitValue true
-
-    doFirst {
-        println "Running clearDeviceAllureResults..."
-        println "Command: ${adbCommand.join(' ')}"
-    }
-    doLast {
-        println "Clear completed with exit code: ${executionResult.get().exitValue}"
-    }
 }
 
-// Привязка к инструментальным тестам Android
 tasks.withType(com.android.build.gradle.internal.tasks.AndroidTestTask).configureEach { Task task ->
-    println "Configuring Android test task: ${task.name}"
     if (task.name.toLowerCase().startsWith("connected") && task.name.toLowerCase().endsWith("androidtest")) {
-        println "Matched connected Android test task: ${task.name}"
         task.dependsOn tasks.named("clearDeviceAllureResults")
         task.finalizedBy tasks.named("pullAllureResults")
-        println "Dependencies set for ${task.name}: dependsOn clearDeviceAllureResults, finalizedBy pullAllureResults"
-    } else {
-        println "Task ${task.name} does not match 'connected' and 'androidtest' pattern"
     }
 }
 
-// Дополнительная диагностика всех AndroidTestTask задач
 tasks.whenTaskAdded { Task task ->
     if (task instanceof com.android.build.gradle.internal.tasks.AndroidTestTask) {
-        println "Found AndroidTest task: ${task.name}"
     }
 }
+
 
