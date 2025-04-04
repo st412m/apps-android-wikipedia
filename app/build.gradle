@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.tasks.AndroidTestTask
+
 plugins {
     id 'com.android.application'
     id 'com.google.devtools.ksp'
@@ -333,7 +335,7 @@ tasks.register("clearDeviceAllureResults", Exec) {
     ignoreExitValue true
 }
 
-tasks.withType(com.android.build.gradle.internal.tasks.AndroidTestTask).configureEach { Task task ->
+tasks.withType(AndroidTestTask).configureEach { Task task ->
     if (task.name.toLowerCase().startsWith("connected") && task.name.toLowerCase().endsWith("androidtest")) {
         task.dependsOn tasks.named("clearDeviceAllureResults")
         task.finalizedBy tasks.named("pullAllureResults")
