@@ -12,6 +12,8 @@ import org.wikipedia.homeworks.homework07.ExploreScreen
 import org.wikipedia.homeworks.homework07.TopReadCardViewItem
 import org.wikipedia.homeworks.homework07.WikiCardViewItem
 import org.wikipedia.homeworks.homework08.OnboardingScreen
+import org.wikipedia.homeworks.homework19.Steps
+import org.wikipedia.homeworks.homework19.steps
 import org.wikipedia.main.MainActivity
 
 class TopReadWebViewTest : TestCase(
@@ -25,20 +27,21 @@ class TopReadWebViewTest : TestCase(
     @Test
     fun topReadTest() {
         run {
-            step("Покидаем онбоардинг") {
-                OnboardingScreen.skipButton.click()
-            }
-            step("Кликаем на 2 статью в блоке 'Top read'") {
+            steps {
+                click(OnboardingScreen.skipButton, "кнопка skip")
+
                 ExploreScreen.items.childWith<TopReadCardViewItem> {
                     withDescendant {
                         withText("Top read")
                     }
                 }.perform {
                     wikiCardViewItems.childAt<WikiCardViewItem>(1) {
-                        cardItemTitle.click()
+                        isVisible(cardItemTitle, "Заголовок статьи")
+                        click(cardItemTitle, "Заголовок статьи")
                     }
                 }
             }
+
             step("Скроллим до элемента с id 'References' и проверяем его содержимое по тексту") {
                 ArticleViewScreen {
                     webView {
