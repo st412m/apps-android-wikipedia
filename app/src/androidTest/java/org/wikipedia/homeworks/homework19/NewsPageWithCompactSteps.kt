@@ -1,15 +1,13 @@
-package org.wikipedia.homeworks.homework09
+package org.wikipedia.homeworks.homework19
 
 import com.kaspersky.kaspresso.screens.KScreen
 import io.github.kakaocup.kakao.common.views.KView
-import io.github.kakaocup.kakao.edit.KEditText
 import io.github.kakaocup.kakao.image.KImageView
-import io.github.kakaocup.kakao.searchview.KSearchView
 import io.github.kakaocup.kakao.text.KTextView
 import io.github.kakaocup.kakao.toolbar.KToolbar
 import org.wikipedia.R
 
-object NewsPage: KScreen<NewsPage>() {
+object NewsPageWithCompactSteps : KScreen<NewsPageWithCompactSteps>() {
     override val layoutId = null
     override val viewClass = null
 
@@ -17,17 +15,9 @@ object NewsPage: KScreen<NewsPage>() {
         withId(R.id.page_web_view)
     }
 
-    val searchField = KView{
-        withId(R.id.page_toolbar_button_search)
+    val newsPageToolbar = KToolbar{
+        withId(R.id.page_toolbar)
     }
-
-    val cabSearchView = KSearchView{
-        withId(R.id.search_cab_view)
-    }
-
-   val newsPageToolbar = KToolbar{
-       withId(R.id.page_toolbar)
-   }
 
     val newsPageToolbarButtonSearch = KTextView{
         withId(R.id.page_toolbar_button_search)
