@@ -17,12 +17,8 @@ object NewsPage: KScreen<NewsPage>() {
         withId(R.id.page_web_view)
     }
 
-    val searchField = KView{
+    val searchToolbar = KView{
         withId(R.id.page_toolbar_button_search)
-    }
-
-    val cabSearchView = KSearchView{
-        withId(R.id.search_cab_view)
     }
 
    val newsPageToolbar = KToolbar{

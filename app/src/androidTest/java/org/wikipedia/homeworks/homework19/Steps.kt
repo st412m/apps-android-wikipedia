@@ -1,5 +1,6 @@
 package org.wikipedia.homeworks.homework19
 
+import android.widget.TextView
 import androidx.test.uiautomator.UiDevice
 import com.kaspersky.kaspresso.testcases.core.testcontext.TestContext
 import com.kaspersky.kaspresso.testcases.models.info.StepInfo
@@ -42,9 +43,9 @@ class Steps(private val textContext: TestContext<*>) {
         }
     }
 
-    fun typeText(text: String) {
+    fun typeText(item: EditableActions, text: String) {
         execute("Печатаем текст '$text'") {
-            typeText(text)
+            item.replaceText(text)
         }
     }
 
@@ -105,6 +106,12 @@ class Steps(private val textContext: TestContext<*>) {
     fun isDisplayed(item: BaseAssertions, name: String = defaultName(item)) {
         execute("Проверяем, что элемент '$name' отображается") {
             item.isDisplayed()
+        }
+    }
+
+    fun pressBack(device: UiDevice){
+        execute("Нажимаем 'назад'"){
+            device.pressBack()
         }
     }
 

@@ -1,6 +1,8 @@
 package org.wikipedia.homeworks.homework19
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule
+import androidx.test.platform.app.InstrumentationRegistry
+import androidx.test.uiautomator.UiDevice
 import com.kaspersky.components.alluresupport.withForcedAllureSupport
 import com.kaspersky.kaspresso.kaspresso.Kaspresso
 import com.kaspersky.kaspresso.params.AutoScrollParams
@@ -26,9 +28,22 @@ class NewsTestWithCompactSteps : TestCase(
 
     @Test
     fun newsTest(){
+        val device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
         run{
             steps {
                 click(OnboardingScreen.skipButton, "кнопка skip")
+                click(ExploreScreen.customizeButton, "кнопка Customize")
+                CustomizeScreen{
+                    customizeScreenRecycler.childAt<CustomizeScreenItem>(0){
+                        isChecked(checkBox, "Чекбокс Featured article")
+                    }
+                    customizeScreenRecycler.childAt<CustomizeScreenItem>(1){
+                        setChecked(checkBox, false,"Чекбокс Top read")
+                        isNotChecked(checkBox,"Чекбокс Top read" )
+                        setChecked(checkBox, true,"Чекбокс Top read")
+                    }
+                }
+                pressBack(device)
                 ExploreScreen.items.childWith<InTheNewsCardItem> {
                     withDescendant {
                         withText("In the news")
@@ -49,8 +64,17 @@ class NewsTestWithCompactSteps : TestCase(
                     click(newsCardItemTitle, "Заголовок второй статьи")
                 }
                 isDisplayed(NewsPage.newsPageWebView, "ID page_web_view")
-                click(NewsPage.searchField, "Поле поиска")
-                NewsPage.cabSearchView.perform { typeText("хуй") }
+                setOrientationLeft(device)
+                setOrientationNatural(device)
+                setOrientationRight(device)
+                setOrientationNatural(device)
+                disableNetwork(device)
+                click(NewsPage.newsPageToolbarButtonSearch)
+                sleep(5000)
+                typeText(SearchScreen.searchField, "Проверка ввода")
+                hasText(SearchScreen.searchField, "Проверка ввода", "поле ввода")
+                containsText(SearchScreen.searchField, "вво", "поле ввода")
+                enableNetwork(device)
             }
         }
     }
