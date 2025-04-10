@@ -28,7 +28,6 @@ class NewsTestWithCompactSteps : TestCase(
 
     @Test
     fun newsTest(){
-        val device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
         run{
             steps {
                 click(OnboardingScreen.skipButton, "кнопка skip")
@@ -69,12 +68,14 @@ class NewsTestWithCompactSteps : TestCase(
                 setOrientationRight(device)
                 setOrientationNatural(device)
                 disableNetwork(device)
-                click(NewsPage.newsPageToolbarButtonSearch)
                 sleep(5000)
+                enableNetwork(device)
+                waitForIdle(device, 5000)
+                click(NewsPage.newsPageToolbarButtonSearch)
                 typeText(SearchScreen.searchField, "Проверка ввода")
                 hasText(SearchScreen.searchField, "Проверка ввода", "поле ввода")
                 containsText(SearchScreen.searchField, "вво", "поле ввода")
-                enableNetwork(device)
+                pressBack(device)
             }
         }
     }

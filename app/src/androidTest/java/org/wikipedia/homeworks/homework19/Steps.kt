@@ -1,6 +1,7 @@
 package org.wikipedia.homeworks.homework19
 
 import androidx.test.uiautomator.UiDevice
+import com.kaspersky.kaspresso.device.Device
 import com.kaspersky.kaspresso.testcases.core.testcontext.TestContext
 import com.kaspersky.kaspresso.testcases.models.info.StepInfo
 import io.github.kakaocup.kakao.check.CheckableActions
@@ -30,15 +31,15 @@ class Steps(private val textContext: TestContext<*>) {
         }
     }
 
-    fun disableNetwork(device: UiDevice) {
-        execute("Отключаем Wifi") {
-            device.executeShellCommand("svc wifi disable")
+    fun disableNetwork(device: Device) {
+        execute("Отключаем сеть"){
+            device.network.toggleWiFi(false)
         }
     }
 
-    fun enableNetwork(device: UiDevice) {
-        execute("Включаем Wifi") {
-            device.executeShellCommand("svc wifi enable")
+    fun enableNetwork(device: Device) {
+        execute("Включаем сеть") {
+            device.network.toggleWiFi(true)
         }
     }
 
@@ -54,21 +55,21 @@ class Steps(private val textContext: TestContext<*>) {
         }
     }
 
-    fun setOrientationLeft(device: UiDevice) {
+    fun setOrientationLeft(device: Device) {
         execute("Поворачиваем устройство влево") {
-            device.setOrientationLeft()
+            device.uiDevice.setOrientationLeft()
         }
     }
 
-    fun setOrientationRight(device: UiDevice) {
+    fun setOrientationRight(device: Device) {
         execute("Поворачиваем устройство вправо") {
-            device.setOrientationRight()
+            device.uiDevice.setOrientationRight()
         }
     }
 
-    fun setOrientationNatural(device: UiDevice) {
+    fun setOrientationNatural(device: Device) {
         execute("Устанавливаем ориентацию по умолчанию") {
-            device.setOrientationNatural()
+            device.uiDevice.setOrientationNatural()
         }
     }
 
@@ -108,9 +109,15 @@ class Steps(private val textContext: TestContext<*>) {
         }
     }
 
-    fun pressBack(device: UiDevice){
+    fun pressBack(device: Device){
         execute("Нажимаем 'назад'"){
-            device.pressBack()
+            device.uiDevice.pressBack()
+        }
+    }
+
+    fun waitForIdle(device: Device, time: Long){
+        execute("Ждём пока устаканится в теченинии $time миллисекунд"){
+            device.uiDevice.waitForIdle(time)
         }
     }
 
