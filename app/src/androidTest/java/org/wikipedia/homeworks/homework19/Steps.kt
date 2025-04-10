@@ -1,6 +1,5 @@
 package org.wikipedia.homeworks.homework19
 
-import androidx.test.uiautomator.UiDevice
 import com.kaspersky.kaspresso.device.Device
 import com.kaspersky.kaspresso.testcases.core.testcontext.TestContext
 import com.kaspersky.kaspresso.testcases.models.info.StepInfo

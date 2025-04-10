@@ -1,8 +1,6 @@
 package org.wikipedia.homeworks.homework19
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule
-import androidx.test.platform.app.InstrumentationRegistry
-import androidx.test.uiautomator.UiDevice
 import com.kaspersky.components.alluresupport.withForcedAllureSupport
 import com.kaspersky.kaspresso.kaspresso.Kaspresso
 import com.kaspersky.kaspresso.params.AutoScrollParams
@@ -27,19 +25,19 @@ class NewsTestWithCompactSteps : TestCase(
     val activityScenarioRule = ActivityScenarioRule(MainActivity::class.java)
 
     @Test
-    fun newsTest(){
-        run{
+    fun newsTest() {
+        run {
             steps {
                 click(OnboardingScreen.skipButton, "кнопка skip")
                 click(ExploreScreen.customizeButton, "кнопка Customize")
-                CustomizeScreen{
-                    customizeScreenRecycler.childAt<CustomizeScreenItem>(0){
+                CustomizeScreen {
+                    customizeScreenRecycler.childAt<CustomizeScreenItem>(0) {
                         isChecked(checkBox, "Чекбокс Featured article")
                     }
-                    customizeScreenRecycler.childAt<CustomizeScreenItem>(1){
-                        setChecked(checkBox, false,"Чекбокс Top read")
-                        isNotChecked(checkBox,"Чекбокс Top read" )
-                        setChecked(checkBox, true,"Чекбокс Top read")
+                    customizeScreenRecycler.childAt<CustomizeScreenItem>(1) {
+                        setChecked(checkBox, false, "Чекбокс Top read")
+                        isNotChecked(checkBox, "Чекбокс Top read")
+                        setChecked(checkBox, true, "Чекбокс Top read")
                     }
                 }
                 pressBack(device)
@@ -56,7 +54,7 @@ class NewsTestWithCompactSteps : TestCase(
                     }
                 }.perform {
                     newsCardReaderItems.childAt<NewsCardItem>(2) {
-                       click(newsCardImage, "Третья картинка")
+                        click(newsCardImage, "Третья картинка")
                     }
                 }
                 FragmentNews.newsStoryItemsRecycler.childAt<NewsCardItems>(1) {
