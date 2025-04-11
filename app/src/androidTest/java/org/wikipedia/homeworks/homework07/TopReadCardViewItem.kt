@@ -7,10 +7,14 @@ import io.github.kakaocup.kakao.recycler.KRecyclerView
 import io.github.kakaocup.kakao.text.KTextView
 import org.hamcrest.Matcher
 import org.wikipedia.R
+import org.wikipedia.homeworks.homework20.setName
+import org.wikipedia.homeworks.homework20.withParent
 
 class TopReadCardViewItem(matcher: Matcher<View>) : KRecyclerItem<TopReadCardViewItem>(matcher) {
-    val topReadHeaderTitle = KTextView(matcher) {
-        withId(R.id.view_card_header_title)
+    val topReadHeaderTitle by lazy {
+        KTextView(matcher) {
+            withId(R.id.view_card_header_title)
+        }.setName(withParent("Заголовок"))
     }
     val languageCode = KTextView(matcher) {
         withId(R.id.langCodeText)
