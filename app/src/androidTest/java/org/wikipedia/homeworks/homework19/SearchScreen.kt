@@ -10,5 +10,6 @@ object SearchScreen : KScreen<SearchScreen>() {
 
     val searchField = KEditText {
         withId(R.id.search_src_text)
+//        withResourceName("search_src_text")
     }
 }
