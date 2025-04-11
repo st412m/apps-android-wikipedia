@@ -40,7 +40,7 @@ class NewsTestWithCompactSteps : TestCase(
                         setChecked(checkBox, true, "Чекбокс Top read")
                     }
                 }
-                pressBack(device)
+                pressBack()
                 ExploreScreen.items.childWith<InTheNewsCardItem> {
                     withDescendant {
                         withText("In the news")
@@ -60,20 +60,20 @@ class NewsTestWithCompactSteps : TestCase(
                 FragmentNews.newsStoryItemsRecycler.childAt<NewsCardItems>(1) {
                     click(newsCardItemTitle, "Заголовок второй статьи")
                 }
-                isDisplayed(NewsPage.newsPageWebView, "ID page_web_view")
-                setOrientationLeft(device)
-                setOrientationNatural(device)
-                setOrientationRight(device)
-                setOrientationNatural(device)
-                disableNetwork(device)
+                isDisplayed(NewsPage.newsPageWebView)
+                setOrientationLeft()
+                setOrientationNatural()
+                setOrientationRight()
+                setOrientationNatural()
+                disableNetwork()
                 sleep(5000)
-                enableNetwork(device)
-                waitForIdle(device, 5000)
+                enableNetwork()
+                waitForIdle( 5000)
                 click(NewsPage.newsPageToolbarButtonSearch)
                 typeText(SearchScreen.searchField, "Проверка ввода")
                 hasText(SearchScreen.searchField, "Проверка ввода", "поле ввода")
                 containsText(SearchScreen.searchField, "вво", "поле ввода")
-                pressBack(device)
+                pressBack()
             }
         }
     }

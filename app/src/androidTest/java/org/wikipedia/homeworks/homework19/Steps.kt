@@ -10,7 +10,7 @@ import io.github.kakaocup.kakao.common.assertions.BaseAssertions
 import io.github.kakaocup.kakao.edit.EditableActions
 import io.github.kakaocup.kakao.text.TextViewAssertions
 
-class Steps(private val textContext: TestContext<*>) {
+class Steps(private val testContext: TestContext<*>) {
 
     fun click(item: BaseActions, name: String = defaultName(item)) {
         execute("Нажимает на элемент '$name'") {
@@ -30,15 +30,15 @@ class Steps(private val textContext: TestContext<*>) {
         }
     }
 
-    fun disableNetwork(device: Device) {
+    fun disableNetwork() {
         execute("Отключаем сеть"){
-            device.network.toggleWiFi(false)
+            testContext.device.network.toggleWiFi(false)
         }
     }
 
-    fun enableNetwork(device: Device) {
+    fun enableNetwork() {
         execute("Включаем сеть") {
-            device.network.toggleWiFi(true)
+            testContext.device.network.toggleWiFi(true)
         }
     }
 
@@ -54,21 +54,21 @@ class Steps(private val textContext: TestContext<*>) {
         }
     }
 
-    fun setOrientationLeft(device: Device) {
+    fun setOrientationLeft() {
         execute("Поворачиваем устройство влево") {
-            device.uiDevice.setOrientationLeft()
+            testContext.device.uiDevice.setOrientationLeft()
         }
     }
 
-    fun setOrientationRight(device: Device) {
+    fun setOrientationRight() {
         execute("Поворачиваем устройство вправо") {
-            device.uiDevice.setOrientationRight()
+            testContext.device.uiDevice.setOrientationRight()
         }
     }
 
-    fun setOrientationNatural(device: Device) {
+    fun setOrientationNatural() {
         execute("Устанавливаем ориентацию по умолчанию") {
-            device.uiDevice.setOrientationNatural()
+            testContext.device.uiDevice.setOrientationNatural()
         }
     }
 
@@ -102,27 +102,27 @@ class Steps(private val textContext: TestContext<*>) {
         }
     }
 
-    fun isDisplayed(item: BaseAssertions, name: String = defaultName(item)) {
+    fun isDisplayed(item: BaseAssertions, name: String = item.toString()) {
         execute("Проверяем, что элемент '$name' отображается") {
             item.isDisplayed()
         }
     }
 
-    fun pressBack(device: Device){
+    fun pressBack(){
         execute("Нажимаем 'назад'"){
-            device.uiDevice.pressBack()
+           testContext.device.uiDevice.pressBack()
         }
     }
 
-    fun waitForIdle(device: Device, time: Long){
+    fun waitForIdle(time: Long){
         execute("Ждём пока устаканится в теченинии $time миллисекунд"){
-            device.uiDevice.waitForIdle(time)
+            testContext.device.uiDevice.waitForIdle(time)
         }
     }
 
 
     private fun execute(stepText: String, actions: (StepInfo) -> Unit) {
-        textContext.step(stepText, actions)
+        testContext.step(stepText, actions)
     }
 
     private fun defaultName(item: Any): String {
