@@ -28,7 +28,7 @@ class TopReadWebViewTest : TestCase(
     fun topReadTest() {
         run {
             steps {
-                click(OnboardingScreen.skipButton, "кнопка skip")
+                click(OnboardingScreen.skipButton)
 
                 ExploreScreen.items.childWith<TopReadCardViewItem> {
                     withDescendant {
@@ -37,7 +37,7 @@ class TopReadWebViewTest : TestCase(
                 }.perform {
                     wikiCardViewItems.childAt<WikiCardViewItem>(1) {
                         isVisible(cardItemTitle, "Заголовок статьи")
-                        click(cardItemTitle, "Заголовок статьи")
+                        click(cardItemTitle)
                     }
                 }
             }

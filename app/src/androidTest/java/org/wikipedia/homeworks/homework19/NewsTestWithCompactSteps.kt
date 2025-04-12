@@ -28,16 +28,16 @@ class NewsTestWithCompactSteps : TestCase(
     fun newsTest() {
         run {
             steps {
-                click(OnboardingScreen.skipButton, "кнопка skip")
-                click(ExploreScreen.customizeButton, "кнопка Customize")
+                click(OnboardingScreen.skipButton)
+                click(ExploreScreen.customizeButton)
                 CustomizeScreen {
                     customizeScreenRecycler.childAt<CustomizeScreenItem>(0) {
-                        isChecked(checkBox, "Чекбокс Featured article")
+                        isChecked(checkBox)
                     }
                     customizeScreenRecycler.childAt<CustomizeScreenItem>(1) {
-                        setChecked(checkBox, false, "Чекбокс Top read")
-                        isNotChecked(checkBox, "Чекбокс Top read")
-                        setChecked(checkBox, true, "Чекбокс Top read")
+                        setChecked(checkBox, false)
+                        isNotChecked(checkBox, )
+                        setChecked(checkBox, true)
                     }
                 }
                 pressBack()
@@ -54,11 +54,11 @@ class NewsTestWithCompactSteps : TestCase(
                     }
                 }.perform {
                     newsCardReaderItems.childAt<NewsCardItem>(2) {
-                        click(newsCardImage, "Третья картинка")
+                        click(newsCardImage)
                     }
                 }
                 FragmentNews.newsStoryItemsRecycler.childAt<NewsCardItems>(1) {
-                    click(newsCardItemTitle, "Заголовок второй статьи")
+                    click(newsCardItemTitle)
                 }
                 isDisplayed(NewsPage.newsPageWebView)
                 setOrientationLeft()
