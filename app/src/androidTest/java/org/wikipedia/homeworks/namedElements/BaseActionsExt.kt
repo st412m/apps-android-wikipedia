@@ -1,4 +1,4 @@
-package org.wikipedia.homeworks.homework20
+package org.wikipedia.homeworks.namedElements
 
 import io.github.kakaocup.kakao.common.actions.BaseActions
 
@@ -9,7 +9,7 @@ fun <T: BaseActions> T.setName(nameHierarchyClass: NameHierarchyClass): T{
     return this
 }
 
-fun BaseActions.getName(): NameHierarchyClass{
+fun BaseActions.getName(): NameHierarchyClass {
     return elementNames[this] ?: throw RuntimeException("Необходимо указать имя")
 }
 

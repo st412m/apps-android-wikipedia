@@ -1,4 +1,4 @@
-package org.wikipedia.homeworks.homework20
+package org.wikipedia.homeworks.namedElements
 
 import io.github.kakaocup.kakao.recycler.KRecyclerItem
 import io.github.kakaocup.kakao.recycler.KRecyclerView

@@ -1,6 +1,5 @@
 package org.wikipedia.homeworks.homework19
 
-import com.kaspersky.kaspresso.device.Device
 import com.kaspersky.kaspresso.testcases.core.testcontext.TestContext
 import com.kaspersky.kaspresso.testcases.models.info.StepInfo
 import io.github.kakaocup.kakao.check.CheckableActions
@@ -9,7 +8,7 @@ import io.github.kakaocup.kakao.common.actions.BaseActions
 import io.github.kakaocup.kakao.common.assertions.BaseAssertions
 import io.github.kakaocup.kakao.edit.EditableActions
 import io.github.kakaocup.kakao.text.TextViewAssertions
-import org.wikipedia.homeworks.homework20.getName
+import org.wikipedia.homeworks.namedElements.getName
 
 class Steps(private val testContext: TestContext<*>) {
 

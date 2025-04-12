@@ -1,17 +1,19 @@
 package org.wikipedia.homeworks.homework20
 
-import com.kaspersky.kaspresso.screens.KScreen
 import io.github.kakaocup.kakao.image.KImageView
 import io.github.kakaocup.kakao.recycler.KRecyclerView
 import io.github.kakaocup.kakao.text.KButton
 import org.wikipedia.R
-import org.wikipedia.feed.view.FeedView
 import org.wikipedia.homeworks.homework07.AnnouncementCardViewItem
 import org.wikipedia.homeworks.homework07.DayHeaderCardViewItem
 import org.wikipedia.homeworks.homework07.FeaturedArticleCardViewItem
 import org.wikipedia.homeworks.homework07.InTheNewsCardItem
 import org.wikipedia.homeworks.homework07.SearchCardViewItem
 import org.wikipedia.homeworks.homework07.TopReadCardViewItem
+import org.wikipedia.homeworks.namedElements.NamedKScreen
+import org.wikipedia.homeworks.namedElements.getName
+import org.wikipedia.homeworks.namedElements.invokeAtIndex
+import org.wikipedia.homeworks.namedElements.setName
 
 
 object ExploreScreenNew : NamedKScreen<ExploreScreenNew>() {

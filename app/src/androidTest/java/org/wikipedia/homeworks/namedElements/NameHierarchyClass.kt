@@ -1,4 +1,4 @@
-package org.wikipedia.homeworks.homework20
+package org.wikipedia.homeworks.namedElements
 
 class NameHierarchyClass(
     val name: String,
