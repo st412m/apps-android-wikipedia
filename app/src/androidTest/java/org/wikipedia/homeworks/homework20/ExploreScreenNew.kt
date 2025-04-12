@@ -16,8 +16,8 @@ import org.wikipedia.homeworks.homework07.TopReadCardViewItem
 
 object ExploreScreenNew : NamedKScreen<ExploreScreenNew>() {
     override val screenName = "Главный экран"
-    override val layoutId = null
-    override val viewClass = null
+    override val layoutId: Int? = null
+    override val viewClass: Class<*>? = null
 
     val toolbarTitle: KImageView by lazy {
         KImageView {

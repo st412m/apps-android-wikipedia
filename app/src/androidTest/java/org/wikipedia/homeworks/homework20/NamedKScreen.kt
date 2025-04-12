@@ -1,12 +1,11 @@
 package org.wikipedia.homeworks.homework20
 
 import com.kaspersky.kaspresso.screens.KScreen
-import io.github.kakaocup.kakao.screen.Screen
 
 abstract class NamedKScreen<out T : KScreen<T>> : KScreen<T>(){
     abstract val screenName: String
-    val hierarchyClass by lazy {HierarchyClass(screenName)}
+    private val nameHierarchyClass by lazy {NameHierarchyClass(screenName)}
 
-    fun withParent(elementName:String) = hierarchyClass.withParent(elementName)
+    fun withParent(elementName:String) = nameHierarchyClass.withParent(elementName)
 
 }

@@ -2,15 +2,15 @@ package org.wikipedia.homeworks.homework20
 
 import io.github.kakaocup.kakao.common.actions.BaseActions
 
-val elementNames = mutableMapOf<BaseActions, HierarchyClass>()
+val elementNames = mutableMapOf<BaseActions, NameHierarchyClass>()
 
-fun <T: BaseActions> T.setName(hierarchyClass: HierarchyClass): T{
-    elementNames[this] = hierarchyClass
+fun <T: BaseActions> T.setName(nameHierarchyClass: NameHierarchyClass): T{
+    elementNames[this] = nameHierarchyClass
     return this
 }
 
-fun BaseActions.getName(): HierarchyClass{
-    return (elementNames[this] ?: "NO LABEL") as HierarchyClass
+fun BaseActions.getName(): NameHierarchyClass{
+    return elementNames[this] ?: throw RuntimeException("Необходимо указать имя")
 }
 
 fun BaseActions.withParent(elementName: String) = getName().withParent(elementName)
