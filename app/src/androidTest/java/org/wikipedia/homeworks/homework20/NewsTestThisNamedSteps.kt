@@ -33,7 +33,7 @@ class NewsTestThisNamedSteps: TestCase(
                 pressBack()
                 ExploreScreenNew.newInTheNewsCardItem().perform {hasAnyText(inTheNewsHeaderTitle)}
                 ExploreScreenNew.newInTheNewsCardItem().perform {newNewsCardItem(2){click(newsCardImage)}}
-                NewFragmentNews.newFragmentNewsCardItems(1){click(newsCardItemTitle)}
+                NewFragmentNews.newFragmentNewsCardItems(1){ click(newsCardItemTitle) }
                 click(NewNewsPage.searchToolbar)
                 typeText(NewSearchScreen.searchField, "Проверка ввода")
                 hasText(NewSearchScreen.searchField, "Проверка ввода")
