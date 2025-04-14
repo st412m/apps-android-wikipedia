@@ -27,7 +27,7 @@ class NewsTestThisNamedSteps: TestCase(
                 NewCustomizeScreen.newCustomizeScreenItem(0){isChecked(checkBox)}
                 NewCustomizeScreen.newCustomizeScreenItem(1){
                     setChecked(checkBox, false)
-                    isNotChecked(checkBox, )
+                    isNotChecked(checkBox)
                     setChecked(checkBox, true)
                 }
                 pressBack()
