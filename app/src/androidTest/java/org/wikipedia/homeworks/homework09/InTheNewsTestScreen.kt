@@ -4,13 +4,18 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule
 import com.kaspersky.components.alluresupport.withForcedAllureSupport
 import com.kaspersky.kaspresso.kaspresso.Kaspresso
 import com.kaspersky.kaspresso.testcases.api.testcase.TestCase
-import org.junit.After
+import org.junit.Assert
 import org.junit.Rule
 import org.junit.Test
 import org.wikipedia.homeworks.homework07.ExploreScreen
 import org.wikipedia.homeworks.homework07.InTheNewsCardItem
 import org.wikipedia.homeworks.homework07.NewsCardItem
 import org.wikipedia.homeworks.homework08.OnboardingScreen
+import org.wikipedia.homeworks.homework21.CustomViewAction
+import org.wikipedia.homeworks.homework21.CustomViewAssertion
+import org.wikipedia.homeworks.homework21.customCheckText
+import org.wikipedia.homeworks.homework21.customClick
+import org.wikipedia.homeworks.homework21.getText
 import org.wikipedia.main.MainActivity
 
 class InTheNewsTestScreen : TestCase(Kaspresso.Builder.withForcedAllureSupport()) {
@@ -23,7 +28,12 @@ class InTheNewsTestScreen : TestCase(Kaspresso.Builder.withForcedAllureSupport()
     fun inTheNewsTest() {
         run {
             step("Покидаем onboarding") {
-                OnboardingScreen.skipButton.click()
+ //               OnboardingScreen.skipButton.view.check(CustomViewAssertion("Skip")) // кастомная проверка
+                OnboardingScreen.skipButton.customCheckText("Skip")
+ //               OnboardingScreen.skipButton.view.perform(CustomViewAction())  // кастомный клик
+                val text = OnboardingScreen.skipButton.getText()
+                Assert.assertEquals("Skip", text)
+                OnboardingScreen.skipButton.customClick()
             }
             step("Проверяем есть ли у нас блок 'In the news'") {
                 ExploreScreen.items.childWith<InTheNewsCardItem> {
