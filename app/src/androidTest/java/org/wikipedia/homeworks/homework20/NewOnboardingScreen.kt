@@ -3,8 +3,8 @@ package org.wikipedia.homeworks.homework20
 import io.github.kakaocup.kakao.common.views.KView
 import io.github.kakaocup.kakao.text.KButton
 import org.wikipedia.R
-import org.wikipedia.homeworks.namedElements.NamedKScreen
-import org.wikipedia.homeworks.namedElements.setName
+import org.wikipedia.homeworks.tools.NamedKScreen
+import org.wikipedia.homeworks.tools.setName
 
 object NewOnboardingScreen : NamedKScreen<NewOnboardingScreen>() {
     override val screenName = "Онбординг"

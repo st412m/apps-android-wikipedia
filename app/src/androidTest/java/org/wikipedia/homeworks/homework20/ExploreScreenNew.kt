@@ -4,10 +4,17 @@ import io.github.kakaocup.kakao.image.KImageView
 import io.github.kakaocup.kakao.recycler.KRecyclerView
 import io.github.kakaocup.kakao.text.KButton
 import org.wikipedia.R
-import org.wikipedia.homeworks.namedElements.NamedKScreen
-import org.wikipedia.homeworks.namedElements.getName
-import org.wikipedia.homeworks.namedElements.invokeAtIndex
-import org.wikipedia.homeworks.namedElements.setName
+import org.wikipedia.homeworks.tools.NamedKScreen
+import org.wikipedia.homeworks.tools.getName
+import org.wikipedia.homeworks.tools.invokeAtIndex
+import org.wikipedia.homeworks.tools.setName
+import org.wikipedia.homeworks.homework07.TopReadCardViewItem
+import org.wikipedia.homeworks.homework07.SearchCardViewItem
+import org.wikipedia.homeworks.homework07.DayHeaderCardViewItem
+import org.wikipedia.homeworks.homework07.AnnouncementCardViewItem
+import org.wikipedia.homeworks.homework07.FeaturedArticleCardViewItem
+
+
 
 object ExploreScreenNew : NamedKScreen<ExploreScreenNew>() {
     override val screenName = "Главный экран"
@@ -39,6 +46,11 @@ object ExploreScreenNew : NamedKScreen<ExploreScreenNew>() {
                 withId(R.id.feed_view)
             },
             itemTypeBuilder = {
+                itemType(::SearchCardViewItem)
+                itemType(::DayHeaderCardViewItem)
+                itemType(::AnnouncementCardViewItem)
+                itemType(::FeaturedArticleCardViewItem)
+                itemType(::TopReadCardViewItem)
                 itemType(::NewInTheNewsCardItem)
             }
         ).setName(withParent("Список блоков"))

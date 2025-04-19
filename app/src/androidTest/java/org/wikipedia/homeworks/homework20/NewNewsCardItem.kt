@@ -6,8 +6,8 @@ import io.github.kakaocup.kakao.recycler.KRecyclerItem
 import io.github.kakaocup.kakao.text.KTextView
 import org.hamcrest.Matcher
 import org.wikipedia.R
-import org.wikipedia.homeworks.namedElements.setName
-import org.wikipedia.homeworks.namedElements.withParent
+import org.wikipedia.homeworks.tools.setName
+import org.wikipedia.homeworks.tools.withParent
 
 class NewNewsCardItem(matcher: Matcher<View>) : KRecyclerItem<NewNewsCardItem>(matcher) {
     val newsCardImage: KImageView by lazy {

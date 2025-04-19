@@ -2,10 +2,10 @@ package org.wikipedia.homeworks.homework20
 
 import io.github.kakaocup.kakao.recycler.KRecyclerView
 import org.wikipedia.R
-import org.wikipedia.homeworks.namedElements.NamedKScreen
-import org.wikipedia.homeworks.namedElements.getName
-import org.wikipedia.homeworks.namedElements.invokeAtIndex
-import org.wikipedia.homeworks.namedElements.setName
+import org.wikipedia.homeworks.tools.NamedKScreen
+import org.wikipedia.homeworks.tools.getName
+import org.wikipedia.homeworks.tools.invokeAtIndex
+import org.wikipedia.homeworks.tools.setName
 
 object NewCustomizeScreen : NamedKScreen<NewCustomizeScreen>() {
     override val screenName = "Экран кастомизации"

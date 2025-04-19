@@ -1,7 +1,6 @@
 package org.wikipedia.homeworks.homework21
 
 import io.github.kakaocup.kakao.common.actions.BaseActions
-import io.github.kakaocup.kakao.text.TextViewActions
 
 fun BaseActions.customClick(){
     view.perform(CustomViewAction())

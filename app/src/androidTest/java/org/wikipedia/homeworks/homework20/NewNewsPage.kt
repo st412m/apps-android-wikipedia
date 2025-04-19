@@ -2,8 +2,8 @@ package org.wikipedia.homeworks.homework20
 
 import io.github.kakaocup.kakao.common.views.KView
 import org.wikipedia.R
-import org.wikipedia.homeworks.namedElements.NamedKScreen
-import org.wikipedia.homeworks.namedElements.setName
+import org.wikipedia.homeworks.tools.NamedKScreen
+import org.wikipedia.homeworks.tools.setName
 
 object NewNewsPage : NamedKScreen <NewNewsPage>() {
     override val screenName = "Страница новости"

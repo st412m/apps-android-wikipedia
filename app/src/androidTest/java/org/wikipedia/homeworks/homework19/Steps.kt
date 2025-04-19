@@ -8,7 +8,7 @@ import io.github.kakaocup.kakao.common.actions.BaseActions
 import io.github.kakaocup.kakao.common.assertions.BaseAssertions
 import io.github.kakaocup.kakao.edit.EditableActions
 import io.github.kakaocup.kakao.text.TextViewAssertions
-import org.wikipedia.homeworks.namedElements.getName
+import org.wikipedia.homeworks.tools.getName
 
 class Steps(private val testContext: TestContext<*>) {
 

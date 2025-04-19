@@ -1,4 +1,4 @@
-package org.wikipedia.homeworks.homework21
+package org.wikipedia.homeworks.homework22
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import com.kaspersky.components.alluresupport.withForcedAllureSupport
@@ -8,12 +8,11 @@ import com.kaspersky.kaspresso.testcases.api.testcase.TestCase
 import org.junit.Rule
 import org.junit.Test
 import org.wikipedia.homeworks.homework20.ExploreScreenNew
-import org.wikipedia.homeworks.homework20.NewCustomizeScreen
 import org.wikipedia.homeworks.homework20.NewOnboardingScreen
 import org.wikipedia.homeworks.tools.steps
 import org.wikipedia.main.MainActivity
 
-class CustomAssertionsTest : TestCase(
+class BlockTest() : TestCase(
 kaspressoBuilder = Kaspresso.Builder.withForcedAllureSupport().apply {
     autoScrollParams = AutoScrollParams(allowedExceptions = emptySet())
 }
@@ -22,21 +21,19 @@ kaspressoBuilder = Kaspresso.Builder.withForcedAllureSupport().apply {
     val activityScenarioRule = ActivityScenarioRule(MainActivity::class.java)
 
     @Test
-    fun customAssertTest(){
+    fun testBlocks() {
         run {
             steps {
                 click(NewOnboardingScreen.skipButton)
-                click(ExploreScreenNew.customizeButton)
-                NewCustomizeScreen.newCustomizeScreenItem(0){
-                    isChecked(checkBox)
-                    toggleCheckBox(checkBox)
-                    isNotChecked(checkBox)}
-                pressBack()
-                ExploreScreenNew.newInTheNewsCardItem().perform {newNewsCardItem(2){
-                    hasAnyDrawable(newsCardImage)
-                    noDrawable(newsCardImage)}
+                ExploreScreenNew.searchCardAlone {
+                    isVisible()
+                    voiceIcon.click()
                 }
-                pressBack()
+                device.uiDevice.pressBack()
+                ExploreScreenNew.announcementCardAlone{
+                    isVisible()
+                    announcementImage.click()
+                }
             }
         }
     }

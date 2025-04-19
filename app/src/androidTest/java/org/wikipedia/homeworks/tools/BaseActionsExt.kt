@@ -1,4 +1,4 @@
-package org.wikipedia.homeworks.namedElements
+package org.wikipedia.homeworks.tools
 
 import io.github.kakaocup.kakao.common.actions.BaseActions
 

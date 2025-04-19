@@ -2,8 +2,8 @@ package org.wikipedia.homeworks.homework20
 
 import androidx.appcompat.R
 import io.github.kakaocup.kakao.edit.KEditText
-import org.wikipedia.homeworks.namedElements.NamedKScreen
-import org.wikipedia.homeworks.namedElements.setName
+import org.wikipedia.homeworks.tools.NamedKScreen
+import org.wikipedia.homeworks.tools.setName
 
 object NewSearchScreen : NamedKScreen<NewSearchScreen>() {
     override val screenName = "Экран поиска"

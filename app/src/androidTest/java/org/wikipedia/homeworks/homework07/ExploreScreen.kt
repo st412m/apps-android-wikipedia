@@ -1,7 +1,6 @@
 package org.wikipedia.homeworks.homework07
 
 import com.kaspersky.kaspresso.screens.KScreen
-import io.github.kakaocup.kakao.common.views.KView
 import io.github.kakaocup.kakao.image.KImageView
 import io.github.kakaocup.kakao.recycler.KRecyclerView
 import io.github.kakaocup.kakao.text.KButton

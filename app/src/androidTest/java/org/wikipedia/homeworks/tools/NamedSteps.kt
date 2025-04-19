@@ -1,4 +1,4 @@
-package org.wikipedia.homeworks.namedElements
+package org.wikipedia.homeworks.tools
 
 import com.kaspersky.kaspresso.testcases.core.testcontext.TestContext
 import com.kaspersky.kaspresso.testcases.models.info.StepInfo
@@ -8,7 +8,6 @@ import io.github.kakaocup.kakao.common.actions.BaseActions
 import io.github.kakaocup.kakao.common.assertions.BaseAssertions
 import io.github.kakaocup.kakao.edit.EditableActions
 import io.github.kakaocup.kakao.text.TextViewAssertions
-import org.wikipedia.homeworks.homework21.ToggleCheckBoxAction
 import org.wikipedia.homeworks.homework21.hasAnyDrawable
 import org.wikipedia.homeworks.homework21.noDrawable
 import org.wikipedia.homeworks.homework21.toggleCheckBox
