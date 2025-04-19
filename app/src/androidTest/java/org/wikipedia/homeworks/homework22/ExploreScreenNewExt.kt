@@ -12,11 +12,10 @@ import org.wikipedia.homeworks.tools.setName
 
 fun ExploreScreenNew.searchCard(
     targetIndex: Int,
-    targetID: Int,
     function: SearchCardViewItem.() -> Unit) {
     ExploreScreenNew.items.invokeByID<SearchCardViewItem>(
         targetIndex = targetIndex,
-        targetID = targetID,//R.id.voice_search_button,
+        targetID = R.id.voice_search_button,
         blockName = "Search Card",
         limiter = ExploreScreenNew.items.getSize()
     ) {
@@ -38,11 +37,10 @@ fun ExploreScreenNew.getSearchCard(): SearchCardViewItem {
 
 fun ExploreScreenNew.announcementCard(
     targetIndex: Int,
-    targetID: Int,
     function: AnnouncementCardViewItem.() -> Unit) {
    ExploreScreenNew.items.invokeByID<AnnouncementCardViewItem>(
         targetIndex = targetIndex,
-        targetID = targetID,// R.id.view_announcement_header_image,
+        targetID = R.id.view_announcement_header_image,
         blockName = "Announcement Card",
         limiter = ExploreScreenNew.items.getSize()
     ) {
