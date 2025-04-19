@@ -63,3 +63,4 @@ fun ExploreScreenNew.announcementCardAlone(block: AnnouncementCardViewItem.() ->
     getAnnouncementCard().apply(block)
 }
 
+

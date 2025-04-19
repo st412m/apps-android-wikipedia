@@ -13,9 +13,9 @@ import org.wikipedia.homeworks.tools.steps
 import org.wikipedia.main.MainActivity
 
 class BlockTest() : TestCase(
-kaspressoBuilder = Kaspresso.Builder.withForcedAllureSupport().apply {
-    autoScrollParams = AutoScrollParams(allowedExceptions = emptySet())
-}
+    kaspressoBuilder = Kaspresso.Builder.withForcedAllureSupport().apply {
+        autoScrollParams = AutoScrollParams(allowedExceptions = emptySet())
+    }
 ) {
     @get:Rule
     val activityScenarioRule = ActivityScenarioRule(MainActivity::class.java)
@@ -30,7 +30,7 @@ kaspressoBuilder = Kaspresso.Builder.withForcedAllureSupport().apply {
                     voiceIcon.click()
                 }
                 device.uiDevice.pressBack()
-                ExploreScreenNew.announcementCardAlone{
+                ExploreScreenNew.announcementCardAlone {
                     isVisible()
                     announcementImage.click()
                 }
