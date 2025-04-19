@@ -34,6 +34,10 @@ class BlockTest() : TestCase(
                     isVisible()
                     announcementImage.click()
                 }
+                ExploreScreenNew.newInTheNewsCard(2){
+                    isVisible(imageMenu)
+                }
+                isVisible(ExploreScreenNew.getNewInTheNewsCard(1))
             }
         }
     }

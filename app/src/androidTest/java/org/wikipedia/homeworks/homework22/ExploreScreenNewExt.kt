@@ -4,15 +4,19 @@ import org.wikipedia.R
 import org.wikipedia.homeworks.homework07.AnnouncementCardViewItem
 import org.wikipedia.homeworks.homework07.SearchCardViewItem
 import org.wikipedia.homeworks.homework20.ExploreScreenNew
+import org.wikipedia.homeworks.homework20.NewInTheNewsCardItem
 import org.wikipedia.homeworks.tools.findByID
 import org.wikipedia.homeworks.tools.getName
 import org.wikipedia.homeworks.tools.invokeByID
 import org.wikipedia.homeworks.tools.setName
 
-fun ExploreScreenNew.searchCard(function: SearchCardViewItem.() -> Unit) {
+fun ExploreScreenNew.searchCard(
+    targetIndex: Int,
+    targetID: Int,
+    function: SearchCardViewItem.() -> Unit) {
     ExploreScreenNew.items.invokeByID<SearchCardViewItem>(
-        targetIndex = 1,
-        targetID = R.id.voice_search_button,
+        targetIndex = targetIndex,
+        targetID = targetID,//R.id.voice_search_button,
         blockName = "Search Card",
         limiter = ExploreScreenNew.items.getSize()
     ) {
@@ -32,10 +36,13 @@ fun ExploreScreenNew.getSearchCard(): SearchCardViewItem {
     }
 }
 
-fun ExploreScreenNew.announcementCard(function: AnnouncementCardViewItem.() -> Unit) {
+fun ExploreScreenNew.announcementCard(
+    targetIndex: Int,
+    targetID: Int,
+    function: AnnouncementCardViewItem.() -> Unit) {
    ExploreScreenNew.items.invokeByID<AnnouncementCardViewItem>(
-        targetIndex = 1,
-        targetID = R.id.view_announcement_header_image,
+        targetIndex = targetIndex,
+        targetID = targetID,// R.id.view_announcement_header_image,
         blockName = "Announcement Card",
         limiter = ExploreScreenNew.items.getSize()
     ) {
@@ -63,4 +70,28 @@ fun ExploreScreenNew.announcementCardAlone(block: AnnouncementCardViewItem.() ->
     getAnnouncementCard().apply(block)
 }
 
+fun ExploreScreenNew.newInTheNewsCard(
+    targetIndex: Int,
+    function: NewInTheNewsCardItem.() -> Unit) {
+    ExploreScreenNew.items.invokeByID<NewInTheNewsCardItem>(
+        targetIndex = targetIndex,
+        targetID = R.id.news_cardview_recycler_view,
+        blockName = "News Card",
+        limiter = ExploreScreenNew.items.getSize()
+    ) {
+        setName(ExploreScreenNew.items.getName().withParent("Блок новостей"))
+        function()
+    }
+}
+
+fun ExploreScreenNew.getNewInTheNewsCard(targetIndex: Int): NewInTheNewsCardItem {
+    return ExploreScreenNew.items.findByID<NewInTheNewsCardItem>(
+        targetIndex = targetIndex,
+        targetID = R.id.news_cardview_recycler_view,
+        blockName = "News Card",
+        limiter = ExploreScreenNew.items.getSize()
+    ).apply {
+        setName(ExploreScreenNew.items.getName().withParent("Блок новостей"))
+    }
+}
 
