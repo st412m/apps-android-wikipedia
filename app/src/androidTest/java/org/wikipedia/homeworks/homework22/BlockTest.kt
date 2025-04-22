@@ -34,7 +34,7 @@ class BlockTest() : TestCase(
                     isVisible()
                     announcementImage.click()
                 }
-                ExploreScreenNew.newInTheNewsCard(2){
+                ExploreScreenNew.newInTheNewsCard(4){
                     isVisible(imageMenu)
                 }
                 isVisible(ExploreScreenNew.getNewInTheNewsCard(1))

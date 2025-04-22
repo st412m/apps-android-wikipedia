@@ -73,7 +73,7 @@ fun ExploreScreenNew.newInTheNewsCard(
     function: NewInTheNewsCardItem.() -> Unit) {
     ExploreScreenNew.items.invokeByID<NewInTheNewsCardItem>(
         targetIndex = targetIndex,
-        targetID = R.id.news_cardview_recycler_view,
+        targetID = R.id.view_card_header_title,
         blockName = "News Card",
         limiter = ExploreScreenNew.items.getSize()
     ) {
@@ -85,7 +85,7 @@ fun ExploreScreenNew.newInTheNewsCard(
 fun ExploreScreenNew.getNewInTheNewsCard(targetIndex: Int): NewInTheNewsCardItem {
     return ExploreScreenNew.items.findByID<NewInTheNewsCardItem>(
         targetIndex = targetIndex,
-        targetID = R.id.news_cardview_recycler_view,
+        targetID = R.id.view_card_header_title,
         blockName = "News Card",
         limiter = ExploreScreenNew.items.getSize()
     ).apply {
