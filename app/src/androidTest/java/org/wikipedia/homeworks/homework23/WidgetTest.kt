@@ -12,9 +12,7 @@ import org.wikipedia.homeworks.tools.steps
 import org.wikipedia.main.MainActivity
 
 class WidgetTest : TestCase(
-    kaspressoBuilder = Kaspresso.Builder.withForcedAllureSupport().apply {
-        autoScrollParams = AutoScrollParams(allowedExceptions = emptySet())
-    }
+    kaspressoBuilder = Kaspresso.Builder.withForcedAllureSupport()
 ) {
     @get:Rule
     val activityScenarioRule = ActivityScenarioRule(MainActivity::class.java)
@@ -25,9 +23,30 @@ class WidgetTest : TestCase(
             steps{
                 click(NewOnboardingScreen.skipButton)
                 ExploreScreenWithWidget.searchWidget{
-                    //isVisible(searchIcon)
                     isVisible(searchText)
                     isVisible(voiceIcon)
+                }
+                device.uiDevice.swipe(
+                    device.uiDevice.displayWidth / 2,
+                    device.uiDevice.displayHeight * 2 / 3,
+                    device.uiDevice.displayWidth / 2,
+                    device.uiDevice.displayHeight / 4,
+                    10
+                )
+                    Thread.sleep(500)
+
+                ExploreScreenWithWidget.topReadWidget{
+                    isDisplayed(topReadHeaderTitle)
+                    isDisplayed(languageCode)
+                    isDisplayed(imageMenu)
+                }
+                ExploreScreenWithWidget.topReadWidget.widgetWikiCardViewItem{
+                    isDisplayed(baseNumberView)
+                    isDisplayed(cardItemTitle)
+                    isDisplayed(cardItemSubtitle)
+                    isDisplayed(cardItemGraph)
+                    isDisplayed(cardItemPageViews)
+                    isDisplayed(cardItemImage)
                 }
             }
         }
