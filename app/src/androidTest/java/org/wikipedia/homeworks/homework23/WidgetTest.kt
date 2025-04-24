@@ -3,7 +3,6 @@ package org.wikipedia.homeworks.homework23
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import com.kaspersky.components.alluresupport.withForcedAllureSupport
 import com.kaspersky.kaspresso.kaspresso.Kaspresso
-import com.kaspersky.kaspresso.params.AutoScrollParams
 import com.kaspersky.kaspresso.testcases.api.testcase.TestCase
 import org.junit.Rule
 import org.junit.Test
@@ -40,13 +39,14 @@ class WidgetTest : TestCase(
                     isDisplayed(languageCode)
                     isDisplayed(imageMenu)
                 }
-                ExploreScreenWithWidget.topReadWidget.widgetWikiCardViewItem{
+                ExploreScreenWithWidget.topReadWidget.topReadWidgetItems(2){
                     isDisplayed(baseNumberView)
                     isDisplayed(cardItemTitle)
                     isDisplayed(cardItemSubtitle)
                     isDisplayed(cardItemGraph)
                     isDisplayed(cardItemPageViews)
                     isDisplayed(cardItemImage)
+                    click(cardItemImage)
                 }
             }
         }

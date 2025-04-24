@@ -25,19 +25,18 @@ class BlockTest() : TestCase(
         run {
             steps {
                 click(NewOnboardingScreen.skipButton)
-                ExploreScreenNew.searchCardAlone {
-                    isVisible()
-                    voiceIcon.click()
+                ExploreScreenNew.announcementCardItemById {
+                    isVisible(this)
                 }
-                device.uiDevice.pressBack()
-                ExploreScreenNew.announcementCardAlone {
-                    isVisible()
-                    announcementImage.click()
+                ExploreScreenNew.searchCardItemById {
+                    isVisible(this)
+                    isVisible(voiceIcon)
                 }
-                ExploreScreenNew.newInTheNewsCard(4){
-                    isVisible(imageMenu)
+                ExploreScreenNew.searchCardItemByClass {
+                    isVisible(this)
+                    isVisible(voiceIcon)
                 }
-                isVisible(ExploreScreenNew.getNewInTheNewsCard(1))
+
             }
         }
     }

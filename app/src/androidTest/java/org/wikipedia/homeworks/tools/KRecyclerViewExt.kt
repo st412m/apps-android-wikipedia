@@ -1,5 +1,7 @@
 package org.wikipedia.homeworks.tools
 
+import android.content.res.Resources.NotFoundException
+import android.view.View
 import io.github.kakaocup.kakao.recycler.KRecyclerItem
 import io.github.kakaocup.kakao.recycler.KRecyclerView
 import kotlin.math.min
@@ -15,19 +17,19 @@ inline fun <reified T : KRecyclerItem<*>> KRecyclerView.invokeAtIndex(
     }
 }
 
-inline fun <reified T : KRecyclerItem<*>> KRecyclerView.invokeByID(
+inline fun  <reified T : KRecyclerItem<*>> KRecyclerView.invokeById(
     targetIndex: Int,
-    targetID: Int,
+    targetId: Int,
     blockName: String,
     limiter: Int,
     function: T.() -> Unit
 ) {
     val recycler = this
-    var findBlockCounter = 0
+    var findBlockCounter = -1
     val max = min(limiter, getSize())
     for (i in 0 until max) {
         childAt<T>(i) {
-            if (hasIdAction(targetID)) findBlockCounter++
+            if (hasIdAction(targetId)) findBlockCounter++
             if (findBlockCounter == targetIndex) {
                 setName(recycler.getName().withParent("$targetIndex's block of $blockName"))
                 function()
@@ -35,27 +37,50 @@ inline fun <reified T : KRecyclerItem<*>> KRecyclerView.invokeByID(
             }
         }
     }
-    throw NoSuchElementException("Not found block with $targetIndex index of $blockName")
-
+    throw NotFoundException("Not found block with $targetIndex index of $blockName")
 }
 
-inline fun <reified T : KRecyclerItem<*>> KRecyclerView.findByID(
+inline fun  <reified T : KRecyclerItem<*>> KRecyclerView.invokeByClass(
     targetIndex: Int,
-    targetID: Int,
+    targetClass: Class<out View>,
+    blockName: String,
     limiter: Int,
-    blockName: String
+    function: T.() -> Unit
+) {
+    val recycler = this
+    var findBlockCounter = -1
+    val max = min(limiter, getSize())
+    for (i in 0 until limiter) {
+        scrollTo(i + 3)
+        childAt<T>(i) {
+            if (hasClassAction(targetClass)) findBlockCounter++
+            if (findBlockCounter == targetIndex) {
+                setName(recycler.getName().withParent("$targetIndex's block of $blockName"))
+                function()
+                return
+            }
+        }
+    }
+    throw NotFoundException("Not found block with $targetIndex index of $blockName")
+}
+
+inline fun  <reified T : KRecyclerItem<*>> KRecyclerView.findById(
+    targetIndex: Int,
+    targetId: Int,
+    limiter: Int,
+    blockName: String,
 ): T {
     val recycler = this
     var findBlockCounter = 0
     val max = min(limiter, getSize())
     for (i in 0 until max) {
         childAt<T>(i) {
-            if (hasIdAction(targetID)) findBlockCounter++
+            if (hasIdAction(targetId)) findBlockCounter++
             if (findBlockCounter == targetIndex) {
                 setName(recycler.getName().withParent("$targetIndex's block of $blockName"))
                 return this
             }
         }
     }
-    throw NoSuchElementException("Not found block with $targetIndex index of $blockName")
+    throw NotFoundException("Not found block with $targetIndex index of $blockName")
 }

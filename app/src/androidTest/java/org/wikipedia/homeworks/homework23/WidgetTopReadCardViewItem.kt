@@ -1,17 +1,14 @@
 package org.wikipedia.homeworks.homework23
 
 import android.view.View
-import androidx.test.espresso.matcher.ViewMatchers.hasDescendant
-import androidx.test.espresso.matcher.ViewMatchers.isDescendantOfA
-import androidx.test.espresso.matcher.ViewMatchers.withId
-import androidx.test.espresso.matcher.ViewMatchers.withText
 import io.github.kakaocup.kakao.common.builders.ViewBuilder
 import io.github.kakaocup.kakao.image.KImageView
+import io.github.kakaocup.kakao.recycler.KRecyclerView
 import io.github.kakaocup.kakao.text.KTextView
 import org.hamcrest.Matcher
-import org.hamcrest.core.AllOf.allOf
 import org.wikipedia.R
 import org.wikipedia.homeworks.tools.KWidget
+import org.wikipedia.homeworks.tools.invokeAtIndex
 import org.wikipedia.homeworks.tools.setName
 import org.wikipedia.homeworks.tools.withParent
 
@@ -37,14 +34,18 @@ class WidgetTopReadCardViewItem : KWidget<WidgetTopReadCardViewItem> {
         }.setName(withParent("Меню"))
     }
 
-    val widgetWikiCardViewItem by lazy {
-        WidgetWikiCardViewItem(
-            matcher = allOf(
-                isDescendantOfA(withId(R.id.view_list_card_list_container)),
-                hasDescendant(withText("Sinners (2025 film)"))
-            )
-        ) {
-        }.setName(withParent("Виджет 'Карточка в 'Top Read''"))
+    val items by lazy {
+        KRecyclerView(
+            builder = {
+                withId(R.id.view_list_card_list)
+            },
+            itemTypeBuilder = {
+                itemType(::WidgetWikiCardViewItem)
+            }
+        ).setName(withParent("Карточка в виджете 'Top Read'"))
+    }
+    fun topReadWidgetItems(index: Int, function: WidgetWikiCardViewItem.() -> Unit) {
+        items.invokeAtIndex(index, function)
     }
 }
 
