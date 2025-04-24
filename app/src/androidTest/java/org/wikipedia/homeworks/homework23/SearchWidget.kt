@@ -1,20 +1,14 @@
 package org.wikipedia.homeworks.homework23
 
 import android.view.View
-import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.compose.ui.test.hasContentDescription
-import androidx.compose.ui.test.hasContentDescriptionExactly
 import androidx.test.platform.app.InstrumentationRegistry
-import io.github.kakaocup.kakao.common.assertions.BaseAssertions
 import io.github.kakaocup.kakao.common.builders.ViewBuilder
 import io.github.kakaocup.kakao.image.KImageView
 import io.github.kakaocup.kakao.text.KTextView
-import org.hamcrest.Description
 import org.hamcrest.Matcher
-import org.hamcrest.TypeSafeMatcher
 import org.wikipedia.R
-import org.wikipedia.homeworks.homework21.HasAnyDrawableAssertion
 import org.wikipedia.homeworks.tools.KWidget
 import org.wikipedia.homeworks.tools.setName
 import org.wikipedia.homeworks.tools.withParent
