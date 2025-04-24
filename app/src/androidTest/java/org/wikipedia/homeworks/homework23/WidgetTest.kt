@@ -19,9 +19,9 @@ class WidgetTest : TestCase(
     @Test
     fun testWithWidget() {
         run {
-            steps{
+            steps {
                 click(NewOnboardingScreen.skipButton)
-                ExploreScreenWithWidget.searchWidget{
+                ExploreScreenWithWidget.searchWidget {
                     isVisible(searchText)
                     isVisible(voiceIcon)
                 }
@@ -32,21 +32,21 @@ class WidgetTest : TestCase(
                     device.uiDevice.displayHeight / 4,
                     10
                 )
-                    Thread.sleep(500)
+                Thread.sleep(500)
 
-                ExploreScreenWithWidget.topReadWidget{
+                ExploreScreenWithWidget.topReadWidget {
                     isDisplayed(topReadHeaderTitle)
                     isDisplayed(languageCode)
                     isDisplayed(imageMenu)
-                }
-                ExploreScreenWithWidget.topReadWidget.topReadWidgetItems(2){
-                    isDisplayed(baseNumberView)
-                    isDisplayed(cardItemTitle)
-                    isDisplayed(cardItemSubtitle)
-                    isDisplayed(cardItemGraph)
-                    isDisplayed(cardItemPageViews)
-                    isDisplayed(cardItemImage)
-                    click(cardItemImage)
+                    topReadWidgetItems(2) {
+                        isDisplayed(baseNumberView)
+                        isDisplayed(cardItemTitle)
+                        isDisplayed(cardItemSubtitle)
+                        isDisplayed(cardItemGraph)
+                        isDisplayed(cardItemPageViews)
+                        isDisplayed(cardItemImage)
+                        click(cardItemImage)
+                    }
                 }
             }
         }
