@@ -61,6 +61,44 @@ class NamedSteps(private val testContext: TestContext<*>) {
         }
     }
 
+    fun swipeVertically(screens: Double, steps: Int, isUp: Boolean = true) {
+        execute("Выполняем вертикальный свайп на $screens экрана с шагом $steps в направлении вверх - $isUp") {
+            val displayWidth = testContext.device.uiDevice.displayWidth
+            val displayHeight = testContext.device.uiDevice.displayHeight
+
+            val startX = displayWidth / 2
+            val startY = (displayHeight * if (isUp) 0.66 else 0.33).toInt()
+            val endY = (startY + (displayHeight * if (isUp) -screens else screens)).toInt()
+
+            val clampedEndY = endY.coerceIn(0, displayHeight)
+
+            try {
+                testContext.device.uiDevice.swipe(startX, startY, startX, clampedEndY, steps)
+            } catch (e: Exception) {
+                println("Ошибка при вертикальном свайпе: ${e.message}")
+            }
+        }
+    }
+
+    fun swipeHorizontally(screens: Double, steps: Int, isRight: Boolean = true) {
+        execute("Выполняем горизонтальный свайп на $screens экранов с шагом $steps в направлении вправо - $isRight") {
+            val displayWidth = testContext.device.uiDevice.displayWidth
+            val displayHeight = testContext.device.uiDevice.displayHeight
+
+            val startY = displayHeight / 2
+            val startX = (displayWidth * if (isRight) 0.66 else 0.33).toInt()
+            val endX = (startX + (displayWidth * if (isRight) -screens else screens)).toInt()
+
+            val clampedEndX = endX.coerceIn(0, displayWidth)
+
+            try {
+                testContext.device.uiDevice.swipe(startX, startY, endX, clampedEndX, steps)
+            } catch (e: Exception) {
+                println("Ошибка при горизонтальном свайпе: ${e.message}")
+            }
+        }
+    }
+
     fun setOrientationRight() {
         execute("Поворачиваем устройство вправо") {
             testContext.device.uiDevice.setOrientationRight()

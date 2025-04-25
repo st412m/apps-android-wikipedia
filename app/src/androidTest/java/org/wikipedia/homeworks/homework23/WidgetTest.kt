@@ -25,13 +25,7 @@ class WidgetTest : TestCase(
                     isVisible(searchText)
                     isVisible(voiceIcon)
                 }
-                device.uiDevice.swipe(
-                    device.uiDevice.displayWidth / 2,
-                    device.uiDevice.displayHeight * 2 / 3,
-                    device.uiDevice.displayWidth / 2,
-                    device.uiDevice.displayHeight / 4,
-                    10
-                )
+                swipeVertically(0.4, 10)
                 Thread.sleep(500)
 
                 ExploreScreenWithWidget.topReadWidget {
