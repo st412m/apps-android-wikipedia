@@ -1,6 +1,5 @@
-package org.wikipedia.homeworks.homework13
+package org.wikipedia.homeworks.homework24
 
-import androidx.test.espresso.web.webdriver.Locator
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import com.kaspersky.kaspresso.testcases.api.testcase.TestCase
 import org.junit.Rule
@@ -8,25 +7,19 @@ import org.junit.Test
 import org.wikipedia.homeworks.homework07.ExploreScreen
 import org.wikipedia.homeworks.homework07.SearchCardViewItem
 import org.wikipedia.homeworks.homework08.OnboardingScreen
-import org.wikipedia.homeworks.homework19.steps
-import org.wikipedia.homeworks.homework24.ReferenceListItem
-import org.wikipedia.homeworks.homework24.WebViewDSLPageObject
+import org.wikipedia.homeworks.homework13.ArticleViewScreen
+import org.wikipedia.homeworks.tools.steps
 import org.wikipedia.main.MainActivity
 
-class WebViewTest : TestCase() {
+class WebViewDSLTest : TestCase() {
 
     @get:Rule
     val activityScenarioRule = ActivityScenarioRule(MainActivity::class.java)
 
     @Test
-    fun webViewTest(){
-        run{
+    fun webViewDSLTest() {
+        run {
             OnboardingScreen.skipButton.click()
-            WebViewDSLPageObject.reference.childAt<ReferenceListItem>(2){
-                steps{
-                }
-
-            }
             ExploreScreen.items.childWith<SearchCardViewItem> {
                 withDescendant {
                     withText("Featured article")
@@ -35,11 +28,10 @@ class WebViewTest : TestCase() {
                 click()
             }
         }
-        ArticleViewScreen{
-            webView{
-                withElement(Locator.XPATH,"//span[@class='mw-page-title-main']"){
-                    this.containsText("Five pounds")
-                }
+
+        ArticleViewScreen {
+            WebViewDSLPageObject.reference.executeAction {
+                scroll()
             }
         }
     }

@@ -8,9 +8,13 @@ import io.github.kakaocup.kakao.common.actions.BaseActions
 import io.github.kakaocup.kakao.common.assertions.BaseAssertions
 import io.github.kakaocup.kakao.edit.EditableActions
 import io.github.kakaocup.kakao.text.TextViewAssertions
+import io.github.kakaocup.kakao.web.KWebView
+import io.github.kakaocup.kakao.web.WebActions
 import org.wikipedia.homeworks.homework21.hasAnyDrawable
 import org.wikipedia.homeworks.homework21.noDrawable
 import org.wikipedia.homeworks.homework21.toggleCheckBox
+import org.wikipedia.homeworks.homework24.KWebViewBaseElement
+import org.wikipedia.homeworks.homework24.KWebViewElement
 
 class NamedSteps(private val testContext: TestContext<*>) {
 
@@ -25,6 +29,7 @@ class NamedSteps(private val testContext: TestContext<*>) {
             item.isVisible()
         }
     }
+
     fun sleep(time: Long) {
         execute("Сделать паузу в $time миллисекунд") {
             Thread.sleep(time)
@@ -32,7 +37,7 @@ class NamedSteps(private val testContext: TestContext<*>) {
     }
 
     fun disableNetwork() {
-        execute("Отключаем сеть"){
+        execute("Отключаем сеть") {
             testContext.device.network.toggleWiFi(false)
         }
     }
@@ -147,17 +152,18 @@ class NamedSteps(private val testContext: TestContext<*>) {
         }
     }
 
-    fun pressBack(){
-        execute("Нажимаем 'назад'"){
+    fun pressBack() {
+        execute("Нажимаем 'назад'") {
             testContext.device.uiDevice.pressBack()
         }
     }
 
-    fun waitForIdle(time: Long){
-        execute("Ждём пока устаканится в теченинии $time миллисекунд"){
+    fun waitForIdle(time: Long) {
+        execute("Ждём пока устаканится в теченинии $time миллисекунд") {
             testContext.device.uiDevice.waitForIdle(time)
         }
     }
+
     fun noDrawable(item: BaseAssertions) {
         execute("Проверяем, что элемент '${(item as BaseActions).getName()}' не содержит изображение") {
             item.noDrawable()
@@ -175,6 +181,20 @@ class NamedSteps(private val testContext: TestContext<*>) {
             item.toggleCheckBox()
         }
     }
+    fun scroll(item: WebActions) {
+        execute("Scroll '${(item as BaseActions).getName()}'") {
+            item.scroll()
+        }
+    }
+
+    fun scroll(item: KWebViewElement) {
+        execute("Scroll '${item.getName()}'") {
+            testContext.flakySafely(5000) {
+                item.executeAction { scroll() }
+            }
+        }
+    }
+
 
     private fun execute(stepText: String, actions: (StepInfo) -> Unit) {
         testContext.step(stepText, actions)
@@ -184,5 +204,8 @@ class NamedSteps(private val testContext: TestContext<*>) {
         function()
     }
 }
+
+
+
 
 
