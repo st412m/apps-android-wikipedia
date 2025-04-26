@@ -3,6 +3,7 @@ package org.wikipedia.homeworks.homework24
 import io.github.kakaocup.kakao.web.KWebView
 import org.wikipedia.R
 import org.wikipedia.homeworks.tools.NamedKScreen
+import org.wikipedia.homeworks.tools.webView.KWebViewElement
 import org.wikipedia.homeworks.tools.webView.KWebViewList
 import org.wikipedia.homeworks.tools.webView.invokeAtIndex
 
@@ -15,6 +16,10 @@ object WebViewDSLPageObject : NamedKScreen<WebViewDSLPageObject>() {
         KWebView {
             withId(R.id.page_web_view)
         }
+    }
+    val referencesHeader by lazy {
+        KWebViewElement(webView, "//h2[@id='mw-references-header']")
+            .setName(withParent("Заголовок References"))
     }
 
     val reference by lazy {

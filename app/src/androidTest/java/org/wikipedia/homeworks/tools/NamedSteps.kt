@@ -8,7 +8,10 @@ import io.github.kakaocup.kakao.common.actions.BaseActions
 import io.github.kakaocup.kakao.common.assertions.BaseAssertions
 import io.github.kakaocup.kakao.edit.EditableActions
 import io.github.kakaocup.kakao.text.TextViewAssertions
+import io.github.kakaocup.kakao.web.KWebView
 import io.github.kakaocup.kakao.web.WebActions
+import io.github.kakaocup.kakao.web.WebAssertions
+import io.github.kakaocup.kakao.web.WebElementBuilder
 import org.wikipedia.homeworks.homework21.hasAnyDrawable
 import org.wikipedia.homeworks.homework21.noDrawable
 import org.wikipedia.homeworks.homework21.toggleCheckBox
@@ -119,6 +122,11 @@ class NamedSteps(private val testContext: TestContext<*>) {
             item.hasText(text)
         }
     }
+    fun hasText(item: KWebViewElement, text: String) {
+        execute("Проверяем у элемента '${item.getName()}' наличие текста '$text'") {
+            item.checkAssertion { hasText(text) }
+        }
+    }
 
     fun hasAnyText(item: TextViewAssertions) {
         execute("Проверяем у элемента '${(item as BaseActions).getName()}' наличие любого текста") {
@@ -162,6 +170,12 @@ class NamedSteps(private val testContext: TestContext<*>) {
         }
     }
 
+    fun waitWebView(milliseconds: Long) {
+        execute("Ожидаем загрузки WebView $milliseconds миллисекунд") {
+            Thread.sleep(milliseconds)
+        }
+    }
+
     fun noDrawable(item: BaseAssertions) {
         execute("Проверяем, что элемент '${(item as BaseActions).getName()}' не содержит изображение") {
             item.noDrawable()
@@ -187,12 +201,11 @@ class NamedSteps(private val testContext: TestContext<*>) {
 
     fun scroll(item: KWebViewElement) {
         execute("Scroll '${item.getName()}'") {
-            testContext.flakySafely(5000) {
+            testContext.flakySafely(15000) {
                 item.executeAction { scroll() }
             }
         }
     }
-
 
     private fun execute(stepText: String, actions: (StepInfo) -> Unit) {
         testContext.step(stepText, actions)
