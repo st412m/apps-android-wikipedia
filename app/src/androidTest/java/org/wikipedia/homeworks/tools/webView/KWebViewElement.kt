@@ -1,4 +1,4 @@
-package org.wikipedia.homeworks.homework24
+package org.wikipedia.homeworks.tools.webView
 
 import io.github.kakaocup.kakao.web.KWebView
 

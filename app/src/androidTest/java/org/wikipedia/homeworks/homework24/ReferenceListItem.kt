@@ -1,6 +1,8 @@
 package org.wikipedia.homeworks.homework24
 
 import io.github.kakaocup.kakao.web.KWebView
+import org.wikipedia.homeworks.tools.webView.KWebViewElement
+import org.wikipedia.homeworks.tools.webView.KWebViewItem
 
 class ReferenceListItem(kWebView: KWebView, xPath: String) :
     KWebViewItem<ReferenceListItem>(kWebView, xPath) {

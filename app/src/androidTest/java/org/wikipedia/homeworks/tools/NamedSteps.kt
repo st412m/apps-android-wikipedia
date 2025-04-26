@@ -8,13 +8,11 @@ import io.github.kakaocup.kakao.common.actions.BaseActions
 import io.github.kakaocup.kakao.common.assertions.BaseAssertions
 import io.github.kakaocup.kakao.edit.EditableActions
 import io.github.kakaocup.kakao.text.TextViewAssertions
-import io.github.kakaocup.kakao.web.KWebView
 import io.github.kakaocup.kakao.web.WebActions
 import org.wikipedia.homeworks.homework21.hasAnyDrawable
 import org.wikipedia.homeworks.homework21.noDrawable
 import org.wikipedia.homeworks.homework21.toggleCheckBox
-import org.wikipedia.homeworks.homework24.KWebViewBaseElement
-import org.wikipedia.homeworks.homework24.KWebViewElement
+import org.wikipedia.homeworks.tools.webView.KWebViewElement
 
 class NamedSteps(private val testContext: TestContext<*>) {
 
