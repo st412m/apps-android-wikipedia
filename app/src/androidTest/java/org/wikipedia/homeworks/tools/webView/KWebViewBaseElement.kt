@@ -2,6 +2,7 @@ package org.wikipedia.homeworks.tools.webView
 
 import androidx.test.espresso.web.webdriver.Locator
 import io.github.kakaocup.kakao.web.KWebView
+import io.github.kakaocup.kakao.web.WebActions
 import io.github.kakaocup.kakao.web.WebAssertions
 import io.github.kakaocup.kakao.web.WebElementBuilder.KWebInteraction
 import org.wikipedia.homeworks.tools.NameHierarchyClass
@@ -28,7 +29,7 @@ abstract class KWebViewBaseElement<T : KWebViewBaseElement<T>>(
         return self
     }
 
-    fun executeAction(interaction: KWebInteraction.() -> Unit) {
+    fun executeAction(interaction: WebActions.() -> Unit) {
         kWebView {
             withElement(Locator.XPATH, xPath, interaction)
         }

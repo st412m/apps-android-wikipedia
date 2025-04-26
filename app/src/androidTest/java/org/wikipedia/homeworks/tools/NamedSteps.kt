@@ -8,10 +8,7 @@ import io.github.kakaocup.kakao.common.actions.BaseActions
 import io.github.kakaocup.kakao.common.assertions.BaseAssertions
 import io.github.kakaocup.kakao.edit.EditableActions
 import io.github.kakaocup.kakao.text.TextViewAssertions
-import io.github.kakaocup.kakao.web.KWebView
 import io.github.kakaocup.kakao.web.WebActions
-import io.github.kakaocup.kakao.web.WebAssertions
-import io.github.kakaocup.kakao.web.WebElementBuilder
 import org.wikipedia.homeworks.homework21.hasAnyDrawable
 import org.wikipedia.homeworks.homework21.noDrawable
 import org.wikipedia.homeworks.homework21.toggleCheckBox

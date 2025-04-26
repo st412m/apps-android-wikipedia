@@ -18,7 +18,7 @@ object WebViewDSLPageObject : NamedKScreen<WebViewDSLPageObject>() {
         }
     }
     val referencesHeader by lazy {
-        KWebViewElement(webView, "//h2[@id='mw-references-header']")
+        KWebViewElement(webView, "//div[contains(@class, 'pcs-edit-section-header')]//h2[@id='References']")
             .setName(withParent("Заголовок References"))
     }
 
