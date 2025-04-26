@@ -34,8 +34,10 @@ class WebViewDSLTest :
                     .perform { newNewsCardItem(2) { click(newsCardImage) } }
                 NewFragmentNews.newFragmentNewsCardItems(1) { click(newsCardItemTitle) }
                 waitWebView(10000)
-                scroll(WebViewDSLPageObject.referencesHeader)
-                hasText(WebViewDSLPageObject.referencesHeader, "References")
+                WebViewDSLPageObject {
+                    scroll(referencesHeader)
+                    hasText(referencesHeader, "References")
+                }
             }
         }
     }
