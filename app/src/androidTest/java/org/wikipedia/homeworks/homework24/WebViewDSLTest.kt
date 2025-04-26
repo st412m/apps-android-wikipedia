@@ -33,8 +33,8 @@ class WebViewDSLTest :
                 ExploreScreenNew.newInTheNewsCardItem()
                     .perform { newNewsCardItem(2) { click(newsCardImage) } }
                 NewFragmentNews.newFragmentNewsCardItems(1) { click(newsCardItemTitle) }
-                waitWebView(10000)
                 WebViewDSLPageObject {
+                    waitWebView(10000)
                     scroll(referencesHeader)
                     hasText(referencesHeader, "References")
                 }
