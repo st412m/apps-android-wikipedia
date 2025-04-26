@@ -8,7 +8,7 @@ import org.wikipedia.homeworks.tools.webView.KWebViewList
 import org.wikipedia.homeworks.tools.webView.invokeAtIndex
 
 object WebViewDSLPageObject : NamedKScreen<WebViewDSLPageObject>() {
-    override val screenName: String = "WebViewDSL"
+    override val screenName: String = "Вебстраница"
     override val layoutId: Int? = null
     override val viewClass: Class<*>? = null
 
@@ -19,11 +19,13 @@ object WebViewDSLPageObject : NamedKScreen<WebViewDSLPageObject>() {
     }
     val referencesHeader by lazy {
         KWebViewElement(webView, "//div[contains(@class, 'pcs-edit-section-header')]//h2[@id='References']")
-            .setName(withParent("Заголовок References"))
+            .setName(withParent("Заголовок"))
     }
 
     val reference by lazy {
-        KWebViewList(webView, "//ol[@class='mw-references references']").setName(withParent("Список ссылок"))
+        KWebViewList(webView, "//ol[@class='mw-references references']")
+            .setName(withParent("Список ссылок"))
+
     }
 
     fun getReferencesList(index: Int, function: ReferenceListItem.() -> Unit) {

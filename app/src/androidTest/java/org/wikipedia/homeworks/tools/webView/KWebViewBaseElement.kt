@@ -4,7 +4,6 @@ import androidx.test.espresso.web.webdriver.Locator
 import io.github.kakaocup.kakao.web.KWebView
 import io.github.kakaocup.kakao.web.WebActions
 import io.github.kakaocup.kakao.web.WebAssertions
-import io.github.kakaocup.kakao.web.WebElementBuilder.KWebInteraction
 import org.wikipedia.homeworks.tools.NameHierarchyClass
 
 abstract class KWebViewBaseElement<T : KWebViewBaseElement<T>>(

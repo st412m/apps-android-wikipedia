@@ -7,10 +7,6 @@ import com.kaspersky.kaspresso.params.AutoScrollParams
 import com.kaspersky.kaspresso.testcases.api.testcase.TestCase
 import org.junit.Rule
 import org.junit.Test
-import org.wikipedia.homeworks.homework07.ExploreScreen
-import org.wikipedia.homeworks.homework07.SearchCardViewItem
-import org.wikipedia.homeworks.homework08.OnboardingScreen
-import org.wikipedia.homeworks.homework13.ArticleViewScreen
 import org.wikipedia.homeworks.homework20.ExploreScreenNew
 import org.wikipedia.homeworks.homework20.NewFragmentNews
 import org.wikipedia.homeworks.homework20.NewOnboardingScreen
@@ -31,12 +27,20 @@ class WebViewDSLTest :
             steps {
                 click(NewOnboardingScreen.skipButton)
                 ExploreScreenNew.newInTheNewsCardItem()
-                    .perform { newNewsCardItem(2) { click(newsCardImage) } }
+                    .perform { newNewsCardItem(1) { click(newsCardImage) } }
                 NewFragmentNews.newFragmentNewsCardItems(1) { click(newsCardItemTitle) }
                 WebViewDSLPageObject {
-                    waitWebView(10000)
+                    waitWebView(5000)
                     scroll(referencesHeader)
                     hasText(referencesHeader, "References")
+                    click(referencesHeader)
+
+                    getReferencesList(1) {
+                        containsText(content, "Rob Harris")
+                    }
+                    getReferencesList(2) {
+                        containsText(content, "Pope Francis dies")
+                    }
                 }
             }
         }

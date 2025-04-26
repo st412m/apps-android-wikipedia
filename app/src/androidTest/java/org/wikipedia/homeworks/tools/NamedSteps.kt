@@ -17,8 +17,16 @@ import org.wikipedia.homeworks.tools.webView.KWebViewElement
 class NamedSteps(private val testContext: TestContext<*>) {
 
     fun click(item: BaseActions) {
-        execute("Нажимает на элемент '${item.getName()}'") {
+        execute("Кликаем на элемент '${item.getName()}'") {
             item.click()
+        }
+    }
+
+    fun click(item: KWebViewElement) {
+        execute("Кликаем на элемент '${item.getName()}'") {
+            testContext.flakySafely(15000) {
+                item.executeAction { click() }
+            }
         }
     }
 
@@ -137,6 +145,12 @@ class NamedSteps(private val testContext: TestContext<*>) {
         }
     }
 
+    fun containsText(item: KWebViewElement, text: String) {
+        execute("Проверяем, что элемент '${item.getName()}' содержит текст '$text'") {
+            item.checkAssertion { containsText(text) }
+        }
+    }
+
     fun isChecked(item: CheckableAssertions) {
         execute("Проверяем, что элемент '${(item as BaseActions).getName()}' отмечен") {
             item.isChecked()
@@ -191,13 +205,13 @@ class NamedSteps(private val testContext: TestContext<*>) {
         }
     }
     fun scroll(item: WebActions) {
-        execute("Scroll '${(item as BaseActions).getName()}'") {
+        execute("Прокручиваем к '${(item as BaseActions).getName()}'") {
             item.scroll()
         }
     }
 
     fun scroll(item: KWebViewElement) {
-        execute("Scroll '${item.getName()}'") {
+        execute("Прокручиваем к '${item.getName()}'") {
             testContext.flakySafely(15000) {
                 item.executeAction { scroll() }
             }
