@@ -73,7 +73,7 @@ class NamedSteps(private val testContext: TestContext<*>) {
     }
 
     fun swipeVertically(screens: Double, steps: Int, isUp: Boolean = true) {
-        execute("Выполняем вертикальный свайп на $screens экрана с шагом $steps в направлении вверх - $isUp") {
+        execute("Выполняем вертикальный свайп на '$screens' экрана с шагом $steps в направлении вверх - $isUp") {
             val displayWidth = testContext.device.uiDevice.displayWidth
             val displayHeight = testContext.device.uiDevice.displayHeight
 
@@ -92,7 +92,7 @@ class NamedSteps(private val testContext: TestContext<*>) {
     }
 
     fun swipeHorizontally(screens: Double, steps: Int, isRight: Boolean = true) {
-        execute("Выполняем горизонтальный свайп на $screens экранов с шагом $steps в направлении вправо - $isRight") {
+        execute("Выполняем горизонтальный свайп на '$screens' экранов с шагом $steps в направлении вправо - $isRight") {
             val displayWidth = testContext.device.uiDevice.displayWidth
             val displayHeight = testContext.device.uiDevice.displayHeight
 
@@ -164,7 +164,7 @@ class NamedSteps(private val testContext: TestContext<*>) {
     }
 
     fun isDisplayed(item: BaseAssertions) {
-        execute("Проверяем, что ${(item as BaseActions).getName()} отображается") {
+        execute("Проверяем, что '${(item as BaseActions).getName()}' отображается") {
             item.isDisplayed()
         }
     }
