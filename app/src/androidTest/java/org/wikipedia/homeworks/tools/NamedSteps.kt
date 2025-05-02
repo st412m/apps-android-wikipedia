@@ -12,9 +12,14 @@ import io.github.kakaocup.kakao.web.WebActions
 import org.wikipedia.homeworks.homework21.hasAnyDrawable
 import org.wikipedia.homeworks.homework21.noDrawable
 import org.wikipedia.homeworks.homework21.toggleCheckBox
+import org.wikipedia.homeworks.tools.smartscenario.CloseCustomizeYourToolbarSmartScenario
+import org.wikipedia.homeworks.tools.smartscenario.ListOfSmartScenario
 import org.wikipedia.homeworks.tools.webView.KWebViewElement
 
 class NamedSteps(private val testContext: TestContext<*>) {
+    private val listOfSmartScenario = ListOfSmartScenario(
+        listOf(CloseCustomizeYourToolbarSmartScenario(testContext))
+    )
 
     fun click(item: BaseActions) {
         execute("Кликаем на элемент '${item.getName()}'") {
@@ -127,6 +132,7 @@ class NamedSteps(private val testContext: TestContext<*>) {
             item.hasText(text)
         }
     }
+
     fun hasText(item: KWebViewElement, text: String) {
         execute("Проверяем у элемента '${item.getName()}' наличие текста '$text'") {
             item.checkAssertion { hasText(text) }
@@ -204,6 +210,7 @@ class NamedSteps(private val testContext: TestContext<*>) {
             item.toggleCheckBox()
         }
     }
+
     fun scroll(item: WebActions) {
         execute("Прокручиваем к '${(item as BaseActions).getName()}'") {
             item.scroll()
@@ -217,9 +224,14 @@ class NamedSteps(private val testContext: TestContext<*>) {
             }
         }
     }
-
-    private fun execute(stepText: String, actions: (StepInfo) -> Unit) {
-        testContext.step(stepText, actions)
+    protected fun execute(stepInfo: String, actions: (StepInfo) -> Unit) {
+        try {
+            testContext.step(stepInfo, actions)
+        } catch (e: Throwable) {
+            if (listOfSmartScenario.execute()) {
+                testContext.step(stepInfo, actions)
+            } else throw e
+        }
     }
 
     operator fun invoke(function: NamedSteps.() -> Unit) {
