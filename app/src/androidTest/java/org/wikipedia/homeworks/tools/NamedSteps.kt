@@ -13,12 +13,15 @@ import org.wikipedia.homeworks.homework21.hasAnyDrawable
 import org.wikipedia.homeworks.homework21.noDrawable
 import org.wikipedia.homeworks.homework21.toggleCheckBox
 import org.wikipedia.homeworks.tools.smartscenario.CloseCustomizeYourToolbarSmartScenario
+import org.wikipedia.homeworks.tools.smartscenario.CloseSyncReadingListBannerSmartScenario
 import org.wikipedia.homeworks.tools.smartscenario.ListOfSmartScenario
 import org.wikipedia.homeworks.tools.webView.KWebViewElement
 
 class NamedSteps(private val testContext: TestContext<*>) {
     private val listOfSmartScenario = ListOfSmartScenario(
-        listOf(CloseCustomizeYourToolbarSmartScenario(testContext))
+        listOf(CloseCustomizeYourToolbarSmartScenario(testContext),
+            CloseSyncReadingListBannerSmartScenario(testContext),
+            )
     )
 
     fun click(item: BaseActions) {
@@ -224,7 +227,7 @@ class NamedSteps(private val testContext: TestContext<*>) {
             }
         }
     }
-    protected fun execute(stepInfo: String, actions: (StepInfo) -> Unit) {
+    private fun execute(stepInfo: String, actions: (StepInfo) -> Unit) {
         try {
             testContext.step(stepInfo, actions)
         } catch (e: Throwable) {

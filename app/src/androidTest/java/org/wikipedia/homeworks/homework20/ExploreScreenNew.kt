@@ -1,5 +1,6 @@
 package org.wikipedia.homeworks.homework20
 
+import io.github.kakaocup.kakao.common.views.KView
 import io.github.kakaocup.kakao.image.KImageView
 import io.github.kakaocup.kakao.recycler.KRecyclerView
 import io.github.kakaocup.kakao.text.KButton
@@ -31,6 +32,12 @@ object ExploreScreenNew : NamedKScreen<ExploreScreenNew>() {
         KImageView {
             withDrawable(R.drawable.ic_search_white_24dp)
         }.setName(withParent("Значок лупы"))
+    }
+
+    val savedButton by lazy{
+        KView{
+            withId(R.id.nav_tab_reading_lists)
+        }.setName(withParent("Список сохраненных статей"))
     }
 
 

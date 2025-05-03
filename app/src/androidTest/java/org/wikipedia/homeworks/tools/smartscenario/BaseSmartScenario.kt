@@ -23,7 +23,7 @@ abstract class BaseSmartScenario(val testContext: TestContext<*>) {
 
     fun waitElementByText(text: String) = getElementByText(text).waitForExists(WAITING_TIME_L)
 
-    fun getElementById(id: String): UiObject {
+    private fun getElementById(id: String): UiObject {
         return testContext
             .device
             .uiDevice
@@ -33,7 +33,7 @@ abstract class BaseSmartScenario(val testContext: TestContext<*>) {
             )
     }
 
-    fun getElementByText(text: String): UiObject {
+    private fun getElementByText(text: String): UiObject {
         return testContext
             .device
             .uiDevice
