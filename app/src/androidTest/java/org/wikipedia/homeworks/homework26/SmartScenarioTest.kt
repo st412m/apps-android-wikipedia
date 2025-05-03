@@ -57,6 +57,7 @@ class SmartScenarioTest: TestCase(
                 }
                 pressBack()
                 pressBack()
+
                 ExploreScreenNew{
                     click(savedButton)
                 }

@@ -227,6 +227,7 @@ class NamedSteps(private val testContext: TestContext<*>) {
             }
         }
     }
+
     private fun execute(stepInfo: String, actions: (StepInfo) -> Unit) {
         try {
             testContext.step(stepInfo, actions)
