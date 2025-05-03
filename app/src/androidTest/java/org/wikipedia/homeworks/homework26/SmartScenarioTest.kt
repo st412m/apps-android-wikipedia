@@ -37,9 +37,12 @@ class SmartScenarioTest: TestCase(
     fun smartScenarioTest() {
         run {
             val checkYourToolbar = CloseCustomizeYourToolbarSmartScenario(this)
+            val checkSyncReading = CloseCustomizeYourToolbarSmartScenario(this)
             steps {
-                click(NewOnboardingScreen.skipButton)
-                checkYourToolbar.init()
+                NewOnboardingScreen {
+                    checkSyncReading.init()
+                    click(skipButton)
+                }
                 ExploreScreenNew.newInTheNewsCardItem()
                     .perform { newNewsCardItem(1) { click(newsCardImage) } }
                 NewFragmentNews.newFragmentNewsCardItems(1) {
