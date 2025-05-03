@@ -36,11 +36,10 @@ class SmartScenarioTest: TestCase(
     @Test
     fun smartScenarioTest() {
         run {
-            val checkYourToolbar = CloseCustomizeYourToolbarSmartScenario(this)
             val checkSyncReading = CloseCustomizeYourToolbarSmartScenario(this)
             steps {
+                checkSyncReading.init()
                 NewOnboardingScreen {
-                    checkSyncReading.init()
                     click(skipButton)
                 }
                 ExploreScreenNew.newInTheNewsCardItem()
