@@ -16,6 +16,12 @@ object NewNewsPage : NamedKScreen <NewNewsPage>() {
         }.setName(withParent("Поисковый тулбар"))
     }
 
+    val articleImage by lazy{
+        KView{
+            withId(R.id.articleImage)
+        }.setName(withParent("Верхнее изображение статьи"))
+    }
+
     val saveButton by lazy{
         KView{
             withId(R.id.page_save)

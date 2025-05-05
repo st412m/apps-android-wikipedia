@@ -37,7 +37,13 @@ object ExploreScreenNew : NamedKScreen<ExploreScreenNew>() {
     val savedButton by lazy{
         KView{
             withId(R.id.nav_tab_reading_lists)
-        }.setName(withParent("Список сохраненных статей"))
+        }.setName(withParent("Кнопка списока сохраненных статей"))
+    }
+
+    val exploreButton by lazy{
+        KView{
+            withId(R.id.nav_tab_explore)
+        }.setName(withParent("Кнопка перехода на главную страницу"))
     }
 
 

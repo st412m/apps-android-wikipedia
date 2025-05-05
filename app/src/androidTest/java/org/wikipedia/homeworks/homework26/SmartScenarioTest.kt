@@ -11,7 +11,6 @@ import org.wikipedia.homeworks.homework20.ExploreScreenNew
 import org.wikipedia.homeworks.homework20.NewFragmentNews
 import org.wikipedia.homeworks.homework20.NewNewsPage
 import org.wikipedia.homeworks.homework20.NewOnboardingScreen
-import org.wikipedia.homeworks.tools.smartscenario.CloseCustomizeYourToolbarSmartScenario
 import org.wikipedia.homeworks.tools.steps
 import org.wikipedia.main.MainActivity
 
@@ -36,9 +35,7 @@ class SmartScenarioTest: TestCase(
     @Test
     fun smartScenarioTest() {
         run {
-            val checkSyncReading = CloseCustomizeYourToolbarSmartScenario(this)
             steps {
-                checkSyncReading.init()
                 NewOnboardingScreen {
                     click(skipButton)
                 }
@@ -48,20 +45,22 @@ class SmartScenarioTest: TestCase(
                     click(newsCardItemTitle)
                 }
                 NewNewsPage{
+                    waitForIdle(5000)
+//                    click(articleImage)
+//                    pressBack()
                     click(saveButton)
                 }
-                pressBack()
-                NewFragmentNews.newFragmentNewsCardItems(0) {
-                    click(newsCardItemTitle)
+
+                repeat(2){
+                    waitForIdle(500)
+                    pressBack()
                 }
-                NewNewsPage{
-                    click(saveButton)
-                }
-                pressBack()
-                pressBack()
 
                 ExploreScreenNew{
                     click(savedButton)
+                    swipeVertically(0.5,10, false)
+                    waitForIdle(5000)
+                    click(exploreButton)
                 }
             }
         }
