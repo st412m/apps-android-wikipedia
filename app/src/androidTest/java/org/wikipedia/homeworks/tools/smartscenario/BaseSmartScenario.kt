@@ -5,7 +5,7 @@ import androidx.test.uiautomator.UiSelector
 import com.kaspersky.kaspresso.testcases.core.testcontext.TestContext
 import com.kaspersky.kaspresso.testcases.models.info.StepInfo
 
-private const val WAITING_TIME_L = 2000L
+private const val WAITING_TIME_L = 100L
 
 abstract class BaseSmartScenario(val testContext: TestContext<*>) {
     abstract val stepInfo: String
