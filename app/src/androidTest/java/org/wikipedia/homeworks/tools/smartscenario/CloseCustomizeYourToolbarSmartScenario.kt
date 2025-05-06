@@ -13,5 +13,5 @@ class CloseCustomizeYourToolbarSmartScenario(testContext: TestContext<*>) : Base
         }.click()
     }
 
-    override fun isConditionMet() = waitElementById("balloon")
+    override fun isConditionMet() = waitElementById("balloon_wrapper")
 }

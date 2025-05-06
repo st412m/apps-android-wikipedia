@@ -5,7 +5,7 @@ import androidx.test.uiautomator.UiSelector
 import com.kaspersky.kaspresso.testcases.core.testcontext.TestContext
 import com.kaspersky.kaspresso.testcases.models.info.StepInfo
 
-private const val WAITING_TIME_L = 100L
+private const val WAITING_TIME_L = 2000L
 
 abstract class BaseSmartScenario(val testContext: TestContext<*>) {
     abstract val stepInfo: String
@@ -23,13 +23,15 @@ abstract class BaseSmartScenario(val testContext: TestContext<*>) {
 
     fun waitElementByText(text: String) = getElementByText(text).waitForExists(WAITING_TIME_L)
 
+    fun waitElementByClassName(className: String) = getElementByClassName(className).waitForExists(WAITING_TIME_L)
+
     private fun getElementById(id: String): UiObject {
         return testContext
             .device
             .uiDevice
             .findObject(
                 UiSelector()
-                    .resourceId("${testContext.device.targetContext.packageName}:id/$id)")
+                    .resourceId("${testContext.device.targetContext.packageName}:id/$id")
             )
     }
 
@@ -40,6 +42,15 @@ abstract class BaseSmartScenario(val testContext: TestContext<*>) {
             .findObject(
                 UiSelector()
                     .textContains(text)
+            )
+    }
+    private fun getElementByClassName(className: String): UiObject {
+        return testContext
+            .device
+            .uiDevice
+            .findObject(
+                UiSelector()
+                    .className(className)
             )
     }
 }

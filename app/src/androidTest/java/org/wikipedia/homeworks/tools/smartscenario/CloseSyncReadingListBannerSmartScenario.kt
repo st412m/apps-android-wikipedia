@@ -12,5 +12,5 @@ class CloseSyncReadingListBannerSmartScenario(testContext: TestContext<*>) : Bas
         }.click()
     }
 
-    override fun isConditionMet() = waitElementByText("reading list")
+    override fun isConditionMet() = waitElementById("action_bar_root")
 }

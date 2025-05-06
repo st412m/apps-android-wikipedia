@@ -19,7 +19,8 @@ import org.wikipedia.homeworks.tools.webView.KWebViewElement
 
 class NamedSteps(private val testContext: TestContext<*>) {
     private val listOfSmartScenario = ListOfSmartScenario(
-        listOf(CloseCustomizeYourToolbarSmartScenario(testContext),
+        listOf(
+            CloseCustomizeYourToolbarSmartScenario(testContext),
             CloseSyncReadingListBannerSmartScenario(testContext),
             )
     )

@@ -41,11 +41,11 @@ class SmartScenarioTest: TestCase(
                 }
                 ExploreScreenNew.newInTheNewsCardItem()
                     .perform { newNewsCardItem(1) { click(newsCardImage) } }
-                NewFragmentNews.newFragmentNewsCardItems(1) {
+                NewFragmentNews.newFragmentNewsCardItems(0) {
                     click(newsCardItemTitle)
                 }
                 NewNewsPage{
-                    waitForIdle(5000)
+//                    waitForIdle(5000)
 //                    click(articleImage)
 //                    pressBack()
                     click(saveButton)
