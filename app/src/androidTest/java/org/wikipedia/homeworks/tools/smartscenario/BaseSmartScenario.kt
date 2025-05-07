@@ -25,6 +25,8 @@ abstract class BaseSmartScenario(val testContext: TestContext<*>) {
 
     fun waitElementByClassName(className: String) = getElementByClassName(className).waitForExists(WAITING_TIME_L)
 
+    fun waitElementByDrawable(drawableName: String) = getElementByDrawable(drawableName).waitForExists(WAITING_TIME_L)
+
     private fun getElementById(id: String): UiObject {
         return testContext
             .device
@@ -51,6 +53,15 @@ abstract class BaseSmartScenario(val testContext: TestContext<*>) {
             .findObject(
                 UiSelector()
                     .className(className)
+            )
+    }
+    private fun getElementByDrawable(drawableName: String): UiObject {
+        return testContext
+            .device
+            .uiDevice
+            .findObject(
+                UiSelector()
+                    .resourceId("${testContext.device.targetContext.packageName}:drawable/$drawableName")
             )
     }
 }

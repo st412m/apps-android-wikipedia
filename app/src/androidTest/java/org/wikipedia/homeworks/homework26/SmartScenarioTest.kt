@@ -45,9 +45,9 @@ class SmartScenarioTest: TestCase(
                     click(newsCardItemTitle)
                 }
                 NewNewsPage{
-//                    waitForIdle(5000)
-//                    click(articleImage)
-//                    pressBack()
+                    waitForIdle(5000)
+                    click(articleImage)
+                    pressBack()
                     click(saveButton)
                 }
 
