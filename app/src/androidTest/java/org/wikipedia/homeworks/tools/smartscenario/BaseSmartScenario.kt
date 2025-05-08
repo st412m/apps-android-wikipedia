@@ -1,7 +1,10 @@
 package org.wikipedia.homeworks.tools.smartscenario
 
+import androidx.test.uiautomator.By
 import androidx.test.uiautomator.UiObject
+import androidx.test.uiautomator.UiObject2
 import androidx.test.uiautomator.UiSelector
+import androidx.test.uiautomator.Until
 import com.kaspersky.kaspresso.testcases.core.testcontext.TestContext
 import com.kaspersky.kaspresso.testcases.models.info.StepInfo
 
@@ -25,7 +28,9 @@ abstract class BaseSmartScenario(val testContext: TestContext<*>) {
 
     fun waitElementByClassName(className: String) = getElementByClassName(className).waitForExists(WAITING_TIME_L)
 
-    fun waitElementByDrawable(drawableName: String) = getElementByDrawable(drawableName).waitForExists(WAITING_TIME_L)
+    fun waitElementAsBalloon(id: String): Boolean {
+        return getElementAsBalloon(id) != null
+    }
 
     private fun getElementById(id: String): UiObject {
         return testContext
@@ -55,13 +60,14 @@ abstract class BaseSmartScenario(val testContext: TestContext<*>) {
                     .className(className)
             )
     }
-    private fun getElementByDrawable(drawableName: String): UiObject {
+    internal fun getElementAsBalloon(id: String): UiObject2? {
+        val resourceId = "${testContext.device.targetContext.packageName}:id/$id"
         return testContext
             .device
             .uiDevice
-            .findObject(
-                UiSelector()
-                    .resourceId("${testContext.device.targetContext.packageName}:drawable/$drawableName")
+            .wait(
+                Until.findObject(By.res(resourceId)),
+                5000
             )
     }
 }

@@ -25,9 +25,7 @@ import org.wikipedia.main.MainActivity
  */
 
 class SmartScenarioTest: TestCase(
-    kaspressoBuilder = Kaspresso.Builder.withForcedAllureSupport().apply {
-    autoScrollParams = AutoScrollParams(allowedExceptions = emptySet())
-}
+    kaspressoBuilder = Kaspresso.Builder.withForcedAllureSupport()
 ) {
     @get:Rule
     val activityScenarioRule = ActivityScenarioRule(MainActivity::class.java)
@@ -47,6 +45,7 @@ class SmartScenarioTest: TestCase(
                 NewNewsPage{
                     waitForIdle(5000)
                     click(articleImage)
+                    waitForIdle(5000)
                     pressBack()
                     click(saveButton)
                 }
