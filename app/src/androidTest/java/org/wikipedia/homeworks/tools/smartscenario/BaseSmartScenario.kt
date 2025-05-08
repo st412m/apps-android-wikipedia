@@ -70,4 +70,12 @@ abstract class BaseSmartScenario(val testContext: TestContext<*>) {
                 5000
             )
     }
+    internal fun getElementByTextSecond(text: String): UiObject2? {
+        return testContext
+            .device
+            .uiDevice
+            .findObject(
+                By.textContains(text)
+            )
+    }
 }

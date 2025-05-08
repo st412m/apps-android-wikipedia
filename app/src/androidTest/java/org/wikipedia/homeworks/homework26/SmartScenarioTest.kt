@@ -24,7 +24,7 @@ import org.wikipedia.main.MainActivity
 банер и не позволит тесту падать.
  */
 
-class SmartScenarioTest: TestCase(
+class SmartScenarioTest : TestCase(
     kaspressoBuilder = Kaspresso.Builder.withForcedAllureSupport()
 ) {
     @get:Rule
@@ -37,27 +37,24 @@ class SmartScenarioTest: TestCase(
                 NewOnboardingScreen {
                     click(skipButton)
                 }
-                ExploreScreenNew.newInTheNewsCardItem()
-                    .perform { newNewsCardItem(1) { click(newsCardImage) } }
-                NewFragmentNews.newFragmentNewsCardItems(0) {
-                    click(newsCardItemTitle)
-                }
-                NewNewsPage{
-                    waitForIdle(5000)
+                ExploreScreenNew.topReadCardViewItem()
+                    .perform { click(wikiCardViewItems) }
+
+                NewNewsPage {
+                    waitForIdle(1000)
                     click(articleImage)
-                    waitForIdle(5000)
                     pressBack()
                     click(saveButton)
                 }
 
-                repeat(2){
+                repeat(2) {
                     waitForIdle(500)
                     pressBack()
                 }
 
-                ExploreScreenNew{
+                ExploreScreenNew {
                     click(savedButton)
-                    swipeVertically(0.5,10, false)
+                    swipeVertically(0.5, 10, false)
                     waitForIdle(5000)
                     click(exploreButton)
                 }

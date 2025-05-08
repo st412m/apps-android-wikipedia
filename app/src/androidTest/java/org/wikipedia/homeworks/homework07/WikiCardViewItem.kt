@@ -7,6 +7,8 @@ import io.github.kakaocup.kakao.recycler.KRecyclerItem
 import io.github.kakaocup.kakao.text.KTextView
 import org.hamcrest.Matcher
 import org.wikipedia.R
+import org.wikipedia.homeworks.tools.setName
+import org.wikipedia.homeworks.tools.withParent
 import org.wikipedia.views.GraphView
 
 class WikiCardViewItem(matcher: Matcher<View>) : KRecyclerItem<WikiCardViewItem>(matcher) {
@@ -19,8 +21,10 @@ class WikiCardViewItem(matcher: Matcher<View>) : KRecyclerItem<WikiCardViewItem>
     val numberView = KTextView(matcher) {
         withId(R.id.numberView)
     }
-    val cardItemTitle = KTextView(matcher) {
-        withId(R.id.view_list_card_item_title)
+    val cardItemTitle by lazy{
+        KTextView(matcher) {
+            withId(R.id.view_list_card_item_title)
+        }.setName(withParent("Заголовок карточки"))
     }
     val cardItemSubtitle = KTextView(matcher) {
         withId(R.id.view_list_card_item_subtitle)

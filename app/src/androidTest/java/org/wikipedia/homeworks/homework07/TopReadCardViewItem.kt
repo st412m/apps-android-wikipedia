@@ -23,13 +23,15 @@ class TopReadCardViewItem(matcher: Matcher<View>) : KRecyclerItem<TopReadCardVie
         withId(R.id.view_list_card_header_menu)
     }
 
-    val wikiCardViewItems = KRecyclerView(
-        parent = matcher,
-        builder = {
-            withId(R.id.view_list_card_list)
-        },
-        itemTypeBuilder = {
-            itemType(::WikiCardViewItem)
-        }
-    )
+    val wikiCardViewItems by lazy{
+        KRecyclerView(
+            parent = matcher,
+            builder = {
+                withId(R.id.view_list_card_list)
+            },
+            itemTypeBuilder = {
+                itemType(::WikiCardViewItem)
+            }
+        ).setName(withParent("Списко карточек"))
+    }
 }

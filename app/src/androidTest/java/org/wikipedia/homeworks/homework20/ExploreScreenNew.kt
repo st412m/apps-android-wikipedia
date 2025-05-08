@@ -80,4 +80,16 @@ object ExploreScreenNew : NamedKScreen<ExploreScreenNew>() {
             }
         }.setName(items.getName().withParent("In the news"))
     }
+
+    fun topReadCardViewItem(index: Int, function: TopReadCardViewItem.() -> Unit) {
+        items.invokeAtIndex(index, function)
+    }
+
+    fun topReadCardViewItem(): TopReadCardViewItem {
+        return items.childWith<TopReadCardViewItem> {
+            withDescendant {
+                withText("Top read")
+            }
+        }.setName(items.getName().withParent("In the news"))
+    }
 }
