@@ -33,7 +33,7 @@ class WebViewDSLTest :
                     waitWebView(5000)
                     scroll(referencesHeader)
                     hasText(referencesHeader, "References")
-                    click(referencesHeader)
+                      click(referencesHeader)
 
                     getReferencesList(1) {
                         containsText(content, "Rob Harris")

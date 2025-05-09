@@ -11,6 +11,7 @@ import org.wikipedia.homeworks.homework20.ExploreScreenNew
 import org.wikipedia.homeworks.homework20.NewFragmentNews
 import org.wikipedia.homeworks.homework20.NewNewsPage
 import org.wikipedia.homeworks.homework20.NewOnboardingScreen
+import org.wikipedia.homeworks.homework24.WebViewDSLPageObject
 import org.wikipedia.homeworks.tools.steps
 import org.wikipedia.main.MainActivity
 
@@ -40,17 +41,15 @@ class SmartScenarioTest : TestCase(
                 ExploreScreenNew.topReadCardViewItem()
                     .perform { click(wikiCardViewItems) }
 
-                NewNewsPage {
-                    waitForIdle(1000)
-                    click(articleImage)
-                    pressBack()
+                WebViewDSLPageObject {
+                    waitWebView(10000)
+                    click(mainImage)
                     click(saveButton)
                 }
 
-                repeat(2) {
                     waitForIdle(500)
                     pressBack()
-                }
+
 
                 ExploreScreenNew {
                     click(savedButton)
