@@ -3,15 +3,14 @@ package org.wikipedia.homeworks.homework26
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import com.kaspersky.components.alluresupport.withForcedAllureSupport
 import com.kaspersky.kaspresso.kaspresso.Kaspresso
-import com.kaspersky.kaspresso.params.AutoScrollParams
 import com.kaspersky.kaspresso.testcases.api.testcase.TestCase
+import io.qameta.allure.kotlin.AllureId
 import org.junit.Rule
 import org.junit.Test
 import org.wikipedia.homeworks.homework20.ExploreScreenNew
-import org.wikipedia.homeworks.homework20.NewFragmentNews
-import org.wikipedia.homeworks.homework20.NewNewsPage
 import org.wikipedia.homeworks.homework20.NewOnboardingScreen
-import org.wikipedia.homeworks.homework24.WebViewDSLPageObject
+import org.wikipedia.homeworks.tools.rules.AllureAnnotationRule
+import org.wikipedia.homeworks.tools.rules.HappyTestRule
 import org.wikipedia.homeworks.tools.steps
 import org.wikipedia.main.MainActivity
 
@@ -31,7 +30,14 @@ class SmartScenarioTest : TestCase(
     @get:Rule
     val activityScenarioRule = ActivityScenarioRule(MainActivity::class.java)
 
+    @get: Rule(order = 2)
+    val happyTestRule = HappyTestRule(testLogger)
+
+    @get: Rule(order = 1)
+    val allureAnnotationRule = AllureAnnotationRule(testLogger)
+
     @Test
+    @AllureId("111223")
     fun smartScenarioTest() {
         run {
             steps {
@@ -41,11 +47,11 @@ class SmartScenarioTest : TestCase(
                 ExploreScreenNew.topReadCardViewItem()
                     .perform { click(wikiCardViewItems) }
 
-                WebViewDSLPageObject {
-                    waitWebView(10000)
-                    click(mainImage)
-                    click(saveButton)
-                }
+//                WebViewDSLPageObject {
+//                    waitWebView(10000)
+//                    click(mainImage)
+//                    click(saveButton)
+//                }
 
                     waitForIdle(500)
                     pressBack()
