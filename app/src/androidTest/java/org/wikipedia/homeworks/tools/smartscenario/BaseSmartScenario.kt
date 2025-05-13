@@ -14,6 +14,10 @@ abstract class BaseSmartScenario(val testContext: TestContext<*>) {
     abstract val stepInfo: String
     abstract val action: (StepInfo) -> Unit
     abstract fun isConditionMet(): Boolean
+
+    private val resourceIdPrefix: String
+        get() = "${testContext.device.targetContext.packageName}:id/"
+
     fun init(): Boolean {
         val conditions = isConditionMet()
         if (conditions) {
@@ -38,7 +42,7 @@ abstract class BaseSmartScenario(val testContext: TestContext<*>) {
             .uiDevice
             .findObject(
                 UiSelector()
-                    .resourceId("${testContext.device.targetContext.packageName}:id/$id")
+                    .resourceId("$resourceIdPrefix$id")
             )
     }
 
@@ -51,6 +55,7 @@ abstract class BaseSmartScenario(val testContext: TestContext<*>) {
                     .textContains(text)
             )
     }
+
     private fun getElementByClassName(className: String): UiObject {
         return testContext
             .device
@@ -60,16 +65,17 @@ abstract class BaseSmartScenario(val testContext: TestContext<*>) {
                     .className(className)
             )
     }
+
     internal fun getElementAsBalloon(id: String): UiObject2? {
-        val resourceId = "${testContext.device.targetContext.packageName}:id/$id"
         return testContext
             .device
             .uiDevice
             .wait(
-                Until.findObject(By.res(resourceId)),
+                Until.findObject(By.res("$resourceIdPrefix$id")),
                 5000
             )
     }
+
     internal fun getElementByTextSecond(text: String): UiObject2? {
         return testContext
             .device
