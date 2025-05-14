@@ -17,26 +17,27 @@ import org.wikipedia.homeworks.tools.rules.DeprecatedTestRule
 import org.wikipedia.homeworks.tools.steps
 import org.wikipedia.main.MainActivity
 
-class DeprecatedTest: TestCase(
-kaspressoBuilder = Kaspresso.Builder.withForcedAllureSupport().apply {
-    stepWatcherInterceptors.removeIf {
-        it is ScreenshotStepInterceptor
-    }
-    testRunWatcherInterceptors.add(SuccessFinaleScreenshotTestInterceptor(screenshots))
-    stepWatcherInterceptors.add(FailOnlyScreenshotStepInterceptor(screenshots))
+class DeprecatedTest : TestCase(
+    kaspressoBuilder = Kaspresso.Builder.withForcedAllureSupport().apply {
+        stepWatcherInterceptors.removeIf {
+            it is ScreenshotStepInterceptor
+        }
+        testRunWatcherInterceptors.add(SuccessFinaleScreenshotTestInterceptor(screenshots))
+        stepWatcherInterceptors.add(FailOnlyScreenshotStepInterceptor(screenshots))
 
-}
-){
+    }
+) {
     @get:Rule
     val activityScenarioRule = ActivityScenarioRule(MainActivity::class.java)
 
-    @get: Rule
+    @get:Rule
     val deprecatedTestRule = DeprecatedTestRule()
 
 
     @Test
     @Deprecated("Пустой тест раз")
-    fun testForDeprecateOne(){}
+    fun testForDeprecateOne() {
+    }
 
     @Test
     fun smartScenarioErrorAndDeprecatedTest() {
@@ -50,18 +51,18 @@ kaspressoBuilder = Kaspresso.Builder.withForcedAllureSupport().apply {
                 NewFragmentNews.newFragmentNewsCardItems(0) {
                     click(newsCardItemTitle)
                 }
-                NewNewsPage{
+                NewNewsPage {
                     click(saveButton)
                 }
 
-                repeat(2){
+                repeat(2) {
                     waitForIdle(500)
                     pressBack()
                 }
 
-                ExploreScreenNew{
+                ExploreScreenNew {
                     click(savedButton)
-                    swipeVertically(0.5,10, false)
+                    swipeVertically(0.5, 10, false)
                     waitForIdle(5000)
                     click(exploreButton)
                 }
@@ -71,7 +72,8 @@ kaspressoBuilder = Kaspresso.Builder.withForcedAllureSupport().apply {
 
     @Test
     @Deprecated("Пустой тест два")
-    fun testForDeprecateTwo(){}
+    fun testForDeprecateTwo() {
+    }
 
     @Test
     fun smartScenarioSuccessAndDeprecatedTest() {
@@ -85,16 +87,16 @@ kaspressoBuilder = Kaspresso.Builder.withForcedAllureSupport().apply {
                 NewFragmentNews.newFragmentNewsCardItems(0) {
                     click(newsCardItemTitle)
                 }
-                NewNewsPage{
+                NewNewsPage {
                     click(saveButton)
                 }
 
-                repeat(2){
+                repeat(2) {
                     waitForIdle(500)
                     pressBack()
                 }
 
-                ExploreScreenNew{
+                ExploreScreenNew {
                     click(savedButton)
                     click(exploreButton)
                 }
@@ -104,5 +106,6 @@ kaspressoBuilder = Kaspresso.Builder.withForcedAllureSupport().apply {
 
     @Test
     @Deprecated("Пустой тест три")
-    fun testForDeprecateThree(){}
+    fun testForDeprecateThree() {
+    }
 }
