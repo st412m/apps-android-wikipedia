@@ -100,6 +100,17 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             testProguardFiles 'test-proguard-rules.pro'
+            final File HW_PROPS_FILE = new File('local.properties')
+            final Properties HW_PROPS = loadProperties(HW_PROPS_FILE)
+            buildConfigField "int", "HOME_WORK_NUMBER", "29"
+            buildConfigField "String", "HOME_WORK_DESCRITPION", "\"Привет ${HW_PROPS["HomeWorkExample"]}\""
+            final File CREDENTIALS = new File('credentials')
+            final Properties CREDENTIALS_PROPS = loadProperties(CREDENTIALS)
+            for(Map.Entry<String,String> entry : CREDENTIALS_PROPS.entrySet()){
+                buildConfigField "String", entry.key, "\"${entry.value}\""
+            }
+            buildConfigField "String", "HOME_WORK_DESCRITPION", "\"Привет ${HW_PROPS["HomeWorkExample"]}\""
+
         }
         release {
             minifyEnabled true
