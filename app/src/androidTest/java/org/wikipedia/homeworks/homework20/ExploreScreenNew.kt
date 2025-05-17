@@ -46,6 +46,12 @@ object ExploreScreenNew : NamedKScreen<ExploreScreenNew>() {
         }.setName(withParent("Кнопка перехода на главную страницу"))
     }
 
+    val moreButton by lazy{
+        KView{
+            withId(R.id.nav_tab_more)
+        }.setName(withParent("Кнопка 'More'"))
+    }
+
 
     val customizeButton: KButton by lazy{
         KButton {

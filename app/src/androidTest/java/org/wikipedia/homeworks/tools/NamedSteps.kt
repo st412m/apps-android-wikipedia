@@ -9,9 +9,14 @@ import io.github.kakaocup.kakao.common.assertions.BaseAssertions
 import io.github.kakaocup.kakao.edit.EditableActions
 import io.github.kakaocup.kakao.text.TextViewAssertions
 import io.github.kakaocup.kakao.web.WebActions
+import org.wikipedia.homeworks.homework20.ExploreScreenNew
 import org.wikipedia.homeworks.homework21.hasAnyDrawable
 import org.wikipedia.homeworks.homework21.noDrawable
 import org.wikipedia.homeworks.homework21.toggleCheckBox
+import org.wikipedia.homeworks.homework29.CreateAnAccountScreen
+import org.wikipedia.homeworks.homework29.Credentials
+import org.wikipedia.homeworks.homework29.LoginScreen
+import org.wikipedia.homeworks.homework29.MoreScreen
 import org.wikipedia.homeworks.tools.smartscenario.CloseCustomizeYourToolbarSmartScenario
 import org.wikipedia.homeworks.tools.smartscenario.CloseSyncReadingListBannerSmartScenario
 import org.wikipedia.homeworks.tools.smartscenario.ListOfSmartScenario
@@ -22,7 +27,7 @@ class NamedSteps(private val testContext: TestContext<*>) {
         listOf(
             CloseCustomizeYourToolbarSmartScenario(testContext),
             CloseSyncReadingListBannerSmartScenario(testContext),
-            )
+        )
     )
 
     fun click(item: BaseActions) {
@@ -225,6 +230,22 @@ class NamedSteps(private val testContext: TestContext<*>) {
         execute("Прокручиваем к '${item.getName()}'") {
             testContext.flakySafely(15000) {
                 item.executeAction { scroll() }
+            }
+        }
+    }
+
+    fun authorization(username: String) {
+        execute("Выполняем авторизацию как '$username'") {
+            ExploreScreenNew.moreButton.click()
+            MoreScreen.loginButton.click()
+            CreateAnAccountScreen.loginButton.click()
+            LoginScreen {
+                usernameField.replaceText(username)
+                passwordField.replaceText(
+                    Credentials.map[username]
+                        ?: throw IllegalArgumentException("Пароля для пользователя '$username' не существует ")
+                )
+                loginButton.click()
             }
         }
     }
