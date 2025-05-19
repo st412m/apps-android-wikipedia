@@ -9,8 +9,8 @@ import org.junit.Rule
 import org.junit.Test
 import org.wikipedia.homeworks.homework20.ExploreScreenNew
 import org.wikipedia.homeworks.homework20.NewOnboardingScreen
-import org.wikipedia.homeworks.tools.allureinterceptors.FailOnlyScreenshotStepInterceptor
-import org.wikipedia.homeworks.tools.allureinterceptors.SuccessFinaleScreenshotTestInterceptor
+import org.wikipedia.homeworks.tools.interceptors.FailOnlyScreenshotStepInterceptor
+import org.wikipedia.homeworks.tools.interceptors.SuccessFinaleScreenshotTestInterceptor
 import org.wikipedia.homeworks.tools.steps
 import org.wikipedia.main.MainActivity
 
@@ -21,7 +21,6 @@ class LoginTest : TestCase(
         }
         testRunWatcherInterceptors.add(SuccessFinaleScreenshotTestInterceptor(screenshots))
         stepWatcherInterceptors.add(FailOnlyScreenshotStepInterceptor(screenshots))
-
     }
 ) {
     @get:Rule
@@ -34,6 +33,7 @@ class LoginTest : TestCase(
                 NewOnboardingScreen {
                     click(skipButton)
                 }
+                uiClick("Allow")
                 authorization("Duhasvyacheslavych")
                 ExploreScreenNew {
                     click(moreButton)

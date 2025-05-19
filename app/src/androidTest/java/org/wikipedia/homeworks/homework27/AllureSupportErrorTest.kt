@@ -11,7 +11,7 @@ import org.wikipedia.homeworks.homework20.ExploreScreenNew
 import org.wikipedia.homeworks.homework20.NewFragmentNews
 import org.wikipedia.homeworks.homework20.NewNewsPage
 import org.wikipedia.homeworks.homework20.NewOnboardingScreen
-import org.wikipedia.homeworks.tools.allureinterceptors.FailOnlyScreenshotStepInterceptor
+import org.wikipedia.homeworks.tools.interceptors.FailOnlyScreenshotStepInterceptor
 import org.wikipedia.homeworks.tools.steps
 import org.wikipedia.main.MainActivity
 

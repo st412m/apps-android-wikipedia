@@ -1,4 +1,4 @@
-package org.wikipedia.homeworks.tools.allureinterceptors
+package org.wikipedia.homeworks.tools.interceptors
 
 import com.kaspersky.components.alluresupport.files.attachScreenshotToAllureReport
 import com.kaspersky.kaspresso.device.screenshots.Screenshots

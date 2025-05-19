@@ -1,5 +1,6 @@
 package org.wikipedia.homeworks.tools
 
+import androidx.test.uiautomator.UiSelector
 import com.kaspersky.kaspresso.testcases.core.testcontext.TestContext
 import com.kaspersky.kaspresso.testcases.models.info.StepInfo
 import io.github.kakaocup.kakao.check.CheckableActions
@@ -35,6 +36,17 @@ class NamedSteps(private val testContext: TestContext<*>) {
     fun click(item: BaseActions) {
         execute("Кликаем на элемент '${item.getName()}'") {
             item.click()
+        }
+    }
+
+    fun uiClick(text: String){
+        execute("Кликаем на элемент с текстом '$text'"){
+            val uiObject = testContext.device.uiDevice.findObject(
+                UiSelector().text(text)
+            )
+            if (uiObject.exists()) {
+                uiObject.click()
+            }
         }
     }
 
