@@ -23,5 +23,5 @@ class LogoutSmartScenario(testContext: TestContext<*>) : BaseSmartScenario(testC
         ).click()
     }
 
-    override fun isConditionMet() = waitElementById("action_bar_root")
+    override fun isConditionMet() = waitElementById("design_bottom_sheet")
 }
