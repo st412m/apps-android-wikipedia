@@ -1,7 +1,6 @@
 package org.wikipedia.homeworks.homework29
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule
-import androidx.test.uiautomator.UiSelector
 import com.kaspersky.components.alluresupport.interceptors.step.ScreenshotStepInterceptor
 import com.kaspersky.components.alluresupport.withForcedAllureSupport
 import com.kaspersky.kaspresso.kaspresso.Kaspresso
@@ -36,9 +35,6 @@ class LoginTest : TestCase(
                     click(skipButton)
                 }
                 authorization("Duhasvyacheslavych")
-                device.uiDevice.findObject(
-                    UiSelector().text("Allow"),
-                ).click()
                 ExploreScreenNew {
                     click(moreButton)
                 }

@@ -20,6 +20,7 @@ import org.wikipedia.homeworks.homework29.MoreScreen
 import org.wikipedia.homeworks.tools.smartscenario.CloseCustomizeYourToolbarSmartScenario
 import org.wikipedia.homeworks.tools.smartscenario.CloseSyncReadingListBannerSmartScenario
 import org.wikipedia.homeworks.tools.smartscenario.ListOfSmartScenario
+import org.wikipedia.homeworks.tools.smartscenario.LogoutSmartScenario
 import org.wikipedia.homeworks.tools.webView.KWebViewElement
 
 class NamedSteps(private val testContext: TestContext<*>) {
@@ -27,6 +28,7 @@ class NamedSteps(private val testContext: TestContext<*>) {
         listOf(
             CloseCustomizeYourToolbarSmartScenario(testContext),
             CloseSyncReadingListBannerSmartScenario(testContext),
+            LogoutSmartScenario(testContext),
         )
     )
 

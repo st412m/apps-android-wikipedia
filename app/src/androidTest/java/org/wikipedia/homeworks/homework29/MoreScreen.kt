@@ -17,6 +17,12 @@ object MoreScreen : NamedKScreen<MoreScreen>() {
         }.setName(withParent("Кнопка 'Log in / join Wikipedia'"))
     }
 
+    val settingsButton by lazy{
+        KTextView {
+            withId(R.id.main_drawer_settings_container)
+        }.setName(withParent("Кнопка 'Settings'"))
+    }
+
     val loginButtonImage by lazy {
         KImageView {
             withId(R.id.main_drawer_account_avatar)
