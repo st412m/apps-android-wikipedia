@@ -34,7 +34,7 @@ class LoginTest : TestCase(
                     click(skipButton)
                 }
                 uiClick("Allow")
-                authorization("Duhasvyacheslavych")
+                authorization(Users.Duhasvyacheslavych)
                 ExploreScreenNew {
                     click(moreButton)
                 }
