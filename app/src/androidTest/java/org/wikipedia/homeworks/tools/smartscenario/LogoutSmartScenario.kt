@@ -13,8 +13,8 @@ class LogoutSmartScenario(testContext: TestContext<*>) : BaseSmartScenario(testC
         val screenWidth = testContext.device.uiDevice.displayWidth
         MoreScreen.settingsButton.click()
         testContext.device.uiDevice.swipe(
-            screenWidth / 2, (screenHeight * 0.8).toInt(),
-            screenWidth / 2, (screenHeight * 0.2).toInt(),
+            screenWidth / 2, (screenHeight * 0.95).toInt(),
+            screenWidth / 2, (screenHeight * 0.1).toInt(),
             20
         )
         SettingsScreen.logoutButton.click()
