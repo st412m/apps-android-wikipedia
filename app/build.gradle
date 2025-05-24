@@ -100,12 +100,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             testProguardFiles 'test-proguard-rules.pro'
-            final File HW_PROPS_FILE = new File('local.properties')
-            final Properties HW_PROPS = loadProperties(HW_PROPS_FILE)
+            final Properties HW_PROPS = loadPropertiesFromRoot('local.properties')
             buildConfigField "int", "HOME_WORK_NUMBER", "29"
             buildConfigField "String", "HOME_WORK_DESCRITPION", "\"Привет ${HW_PROPS["HomeWorkExample"]}\""
-            final File CREDENTIALS = new File('credentials')
-            final Properties CREDENTIALS_PROPS = loadProperties(CREDENTIALS)
+            final Properties CREDENTIALS_PROPS = loadPropertiesFromRoot('credentials')
             for(Map.Entry<String,String> entry : CREDENTIALS_PROPS.entrySet()){
                 buildConfigField "String", entry.key, "\"${entry.value}\""
             }
@@ -311,6 +309,9 @@ private static Properties loadProperties(File file) {
         System.err.println "\"${file}\" not found"
     }
     return props
+}
+private Properties loadPropertiesFromRoot(String name) {
+    return loadProperties(project.rootProject.file(name))
 }
 
 // В файле build.gradle (уровня модуля или проекта)
