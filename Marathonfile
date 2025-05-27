@@ -1,0 +1,33 @@
+name: "Multi-project Android tests"
+outputDir: "build/reports/marathon"
+isCodeCoverageEnabled: true
+batchingStrategy:
+  type: "fixed-size"
+  size: 5
+retryStrategy:
+  type: "fixed-quota"
+  totalAllowedRetryQuota: 100
+  retryPerTestQuota: 2
+uncompletedTestRetryQuota: 1
+deviceInitializationTimeoutMillis: 180000
+vendorConfiguration:
+  type: "Android"
+  outputs:
+  - application: "app/build/outputs/apk/alpha/debug/app-alpha-debug.apk"
+    testApplication: "app/build/outputs/apk/androidTest/alpha/debug/app-alpha-debug-androidTest.apk"
+  autoGrantPermission: true
+  instrumentationArgs:
+    debug: "false"
+  testApplicationPmClear: true
+  waitForDevicesTimeoutMillis: 60000
+  allureConfiguration:
+    enabled: true
+    relativeResultsDirectory: "/Documents/allure-results"
+    pathRoot: "EXTERNAL_STORAGE"
+filteringConfiguration:
+  allowlist:
+    - type: "fully-qualified-test-name"
+      values:
+        - "org.wikipedia.homeworks.homework29.LoginTest#loginTest"
+shardingStrategy:
+  type: "parallel"

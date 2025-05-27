@@ -7,6 +7,7 @@ import com.kaspersky.kaspresso.kaspresso.Kaspresso
 import com.kaspersky.kaspresso.testcases.api.testcase.TestCase
 import org.junit.Rule
 import org.junit.Test
+import com.kaspersky.kaspresso.testcases.core.testcontext.TestContext
 import org.wikipedia.homeworks.homework20.ExploreScreenNew
 import org.wikipedia.homeworks.homework20.NewOnboardingScreen
 import org.wikipedia.homeworks.tools.interceptors.FailOnlyScreenshotStepInterceptor
@@ -27,8 +28,10 @@ class LoginTest : TestCase(
     val activityScenarioRule = ActivityScenarioRule(MainActivity::class.java)
 
     @Test
+    @SmokeTest
     fun loginTest() {
         run {
+            //myTest()
             steps {
                 NewOnboardingScreen {
                     click(skipButton)
@@ -42,4 +45,9 @@ class LoginTest : TestCase(
             }
         }
     }
+//    private fun TestContext<*>.myTest(arg: String){
+//        steps{
+//
+//        }
+//    }
 }
